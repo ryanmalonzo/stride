@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import { char, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
+import { createInsertSchema } from "drizzle-valibot";
 
 const ID_LENGTH = 12;
 
@@ -18,6 +19,8 @@ export const usersTable = pgTable("users", {
     .notNull()
     .default(sql`now()`),
 });
+
+export const userInsertSchema = createInsertSchema(usersTable);
 
 export const sessionsTable = pgTable("sessions", {
   token: char({ length: 36 })

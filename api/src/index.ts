@@ -1,15 +1,8 @@
 import { Hono } from "hono";
-import { drizzle } from "drizzle-orm/bun-sql";
+import auth from "./routes/auth";
 
 const app = new Hono();
 
-const db = drizzle({
-  connection: process.env.DATABASE_URL!,
-  casing: "snake_case",
-});
-
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
+app.route("/auth", auth);
 
 export default app;
