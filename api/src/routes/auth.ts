@@ -5,7 +5,7 @@ import { db } from "../db";
 import { usersTable } from "../db/schema";
 import * as argon2 from "argon2";
 import { StatusCodes } from "http-status-codes";
-import { DrizzleQueryError } from "drizzle-orm";
+import { DrizzleQueryError, eq } from "drizzle-orm";
 import { SQL } from "bun";
 
 const auth = new Hono();
@@ -37,6 +37,28 @@ auth.post("/register", vValidator("json", registerSchema), async (c) => {
   }
 
   return c.body(null, StatusCodes.CREATED);
+});
+
+const loginSchema = object({
+  email: string(),
+  plainPassword: string(),
+});
+auth.post("/login", vValidator("json", loginSchema), async (c) => {
+  const { email, plainPassword } = c.req.valid("json");
+
+  const [user] = await db
+    .select()
+    .from(usersTable)
+    .where(eq(usersTable.email, email));
+  if (!user) {
+    return c.body(null, StatusCodes.UNAUTHORIZED);
+  }
+
+  if (await argon2.verify(user.hashedPassword, plainPassword)) {
+    return c.body(null, StatusCodes.OK);
+  }
+
+  return c.body(null, StatusCodes.UNAUTHORIZED);
 });
 
 export default auth;
