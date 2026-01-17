@@ -1,9 +1,15 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import { drizzle } from "drizzle-orm/bun-sql";
 
-const app = new Hono()
+const app = new Hono();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+const db = drizzle({
+  connection: process.env.DATABASE_URL!,
+  casing: "snake_case",
+});
 
-export default app
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
+export default app;
