@@ -2,13 +2,13 @@
   "name": "api",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:generate": "dotenvx run -f .env.local -- drizzle-kit generate",
+    "db:migrate": "dotenvx run -f .env.local -- drizzle-kit migrate"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.51.4",
     "@hono/valibot-validator": "^0.6.1",
     "argon2": "^0.44.0",
-    "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
     "hono": "^4.11.3",
     "http-status-codes": "^2.3.0",
