@@ -1,7 +1,7 @@
-import { db } from "../../db";
+import type { Context } from "hono";
 import { setSignedCookie } from "hono/cookie";
+import { db } from "../../db";
 import { sessionsTable } from "../../db/schema";
-import { Context } from "hono";
 
 const sevenDaysInSeconds = 7 * 24 * 60 * 60;
 
