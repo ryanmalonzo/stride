@@ -3,8 +3,11 @@ import { logger } from "hono/logger";
 import auth from "./routes/auth";
 
 const app = new Hono();
+const api = new Hono();
 
-app.use(logger());
-app.route("/auth", auth);
+api.use(logger());
+api.route("/auth", auth);
+
+app.route("/api", api);
 
 export default app;
