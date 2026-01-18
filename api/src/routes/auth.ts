@@ -3,10 +3,11 @@ import * as argon2 from "argon2";
 import { SQL } from "bun";
 import { DrizzleQueryError, eq } from "drizzle-orm";
 import { Hono } from "hono";
+import { deleteCookie, getSignedCookie } from "hono/cookie";
 import { StatusCodes } from "http-status-codes";
 import { object, string } from "valibot";
 import { db } from "../db";
-import { usersTable } from "../db/schema";
+import { sessionsTable, usersTable } from "../db/schema";
 import { createSessionCookie } from "../services/auth/create-session-cookie";
 
 const auth = new Hono();
@@ -66,6 +67,25 @@ auth.post("/login", vValidator("json", loginSchema), async (c) => {
   }
 
   return c.body(null, StatusCodes.UNAUTHORIZED);
+});
+
+auth.post("/logout", async (c) => {
+  const sessionToken = await getSignedCookie(
+    c,
+    process.env.SESSION_COOKIE_SECRET,
+    "session",
+  );
+  if (sessionToken) {
+    deleteCookie(c, "session");
+    try {
+      await db
+        .delete(sessionsTable)
+        .where(eq(sessionsTable.token, sessionToken));
+    } catch (error) {
+      console.error("Failed to delete session from database", error);
+    }
+  }
+  return c.body(null, StatusCodes.OK);
 });
 
 export default auth;
