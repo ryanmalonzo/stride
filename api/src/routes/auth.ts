@@ -7,7 +7,7 @@ import { deleteCookie } from "hono/cookie";
 import { StatusCodes } from "http-status-codes";
 import { object, string } from "valibot";
 import { db } from "../db";
-import { sessionsTable, usersTable } from "../db/schema";
+import { sessions, users } from "../db/schema";
 import { getSessionToken } from "../middlewares/require-authentication";
 import { createSessionCookie } from "../services/auth/create-session-cookie";
 
@@ -24,7 +24,7 @@ auth.post("/register", vValidator("json", registerSchema), async (c) => {
 
   try {
     const [user] = await db
-      .insert(usersTable)
+      .insert(users)
       .values({
         email,
         hashedPassword,
@@ -54,10 +54,9 @@ const loginSchema = object({
 auth.post("/login", vValidator("json", loginSchema), async (c) => {
   const { email, plainPassword } = c.req.valid("json");
 
-  const [user] = await db
-    .select()
-    .from(usersTable)
-    .where(eq(usersTable.email, email));
+  const user = await db.query.users.findFirst({
+    where: eq(users.email, email),
+  });
   if (!user) {
     return c.body(null, StatusCodes.UNAUTHORIZED);
   }
@@ -75,9 +74,7 @@ auth.post("/logout", async (c) => {
   if (sessionToken) {
     deleteCookie(c, "session");
     try {
-      await db
-        .delete(sessionsTable)
-        .where(eq(sessionsTable.token, sessionToken));
+      await db.delete(sessions).where(eq(sessions.token, sessionToken));
     } catch (error) {
       console.error("Failed to delete session from database", error);
     }

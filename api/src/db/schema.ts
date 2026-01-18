@@ -1,9 +1,10 @@
+import { relations } from "drizzle-orm";
 import { char, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
 
 const ID_LENGTH = 12;
 
-export const usersTable = pgTable("users", {
+export const users = pgTable("users", {
   id: char({ length: ID_LENGTH })
     .$defaultFn(() => nanoid(ID_LENGTH))
     .primaryKey()
@@ -14,15 +15,26 @@ export const usersTable = pgTable("users", {
   updatedAt: timestamp().notNull().defaultNow(),
 });
 
-export const sessionsTable = pgTable("sessions", {
+export const sessions = pgTable("sessions", {
   token: char({ length: 36 })
     .$defaultFn(() => crypto.randomUUID())
     .primaryKey()
     .notNull(),
   userId: char({ length: ID_LENGTH })
     .notNull()
-    .references(() => usersTable.id, { onDelete: "cascade" }),
+    .references(() => users.id, { onDelete: "cascade" }),
   expiresAt: timestamp().notNull(),
 });
 
-export type User = typeof usersTable.$inferSelect;
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(users, {
+    fields: [sessions.userId],
+    references: [users.id],
+  }),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+  sessions: many(sessions),
+}));
+
+export type User = typeof users.$inferSelect;

@@ -1,13 +1,13 @@
 import type { Context } from "hono";
 import { setSignedCookie } from "hono/cookie";
 import { db } from "../../db";
-import { sessionsTable } from "../../db/schema";
+import { sessions } from "../../db/schema";
 
 const sevenDaysInSeconds = 7 * 24 * 60 * 60;
 
 export async function createSessionCookie(c: Context, userId: string) {
   const [session] = await db
-    .insert(sessionsTable)
+    .insert(sessions)
     .values({
       userId,
       expiresAt: new Date(Date.now() + sevenDaysInSeconds * 1000),

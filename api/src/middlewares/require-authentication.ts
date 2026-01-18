@@ -1,10 +1,9 @@
-import { and, eq, gt } from "drizzle-orm";
 import type { Context, Next } from "hono";
 import { deleteCookie, getSignedCookie } from "hono/cookie";
 import { createMiddleware } from "hono/factory";
 import { StatusCodes } from "http-status-codes";
 import { db } from "../db";
-import { sessionsTable, type User, usersTable } from "../db/schema";
+import type { User } from "../db/schema";
 
 export const getSessionToken = async (
   c: Context,
@@ -22,22 +21,20 @@ export const requireAuth = createMiddleware<{
     return c.body(null, StatusCodes.UNAUTHORIZED);
   }
 
-  const [session] = await db
-    .select()
-    .from(sessionsTable)
-    .innerJoin(usersTable, eq(sessionsTable.userId, usersTable.id))
-    .where(
-      and(
-        eq(sessionsTable.token, sessionToken),
-        gt(sessionsTable.expiresAt, new Date()),
-      ),
-    );
+  const session = await db.query.sessions.findFirst({
+    where: (sessions, { and, eq, gt }) =>
+      and(eq(sessions.token, sessionToken), gt(sessions.expiresAt, new Date())),
+    with: {
+      user: true,
+    },
+  });
+
   if (!session) {
     deleteCookie(c, "session");
     return c.body(null, StatusCodes.UNAUTHORIZED);
   }
 
-  c.set("user", session.users);
+  c.set("user", session.user);
 
   await next();
 });
