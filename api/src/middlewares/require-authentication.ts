@@ -18,6 +18,9 @@ export const requireAuth = createMiddleware<{
 }>(async (c: Context, next: Next) => {
   const sessionToken = await getSessionToken(c);
   if (!sessionToken) {
+    if (sessionToken === false) {
+      deleteCookie(c, "session");
+    }
     return c.body(null, StatusCodes.UNAUTHORIZED);
   }
 
