@@ -2,11 +2,12 @@ import { Hono } from "hono";
 import { vValidator } from "@hono/valibot-validator";
 import { object, string } from "valibot";
 import { db } from "../db";
-import { usersTable } from "../db/schema";
+import { sessionsTable, usersTable } from "../db/schema";
 import * as argon2 from "argon2";
 import { StatusCodes } from "http-status-codes";
 import { DrizzleQueryError, eq } from "drizzle-orm";
 import { SQL } from "bun";
+import { setSignedCookie } from "hono/cookie";
 
 const auth = new Hono();
 
@@ -55,6 +56,28 @@ auth.post("/login", vValidator("json", loginSchema), async (c) => {
   }
 
   if (await argon2.verify(user.hashedPassword, plainPassword)) {
+    const sevenDaysInSeconds = 7 * 24 * 60 * 60;
+    const [session] = await db
+      .insert(sessionsTable)
+      .values({
+        userId: user.id,
+        expiresAt: new Date(Date.now() + sevenDaysInSeconds * 1000),
+      })
+      .returning();
+
+    await setSignedCookie(
+      c,
+      "session",
+      session.token,
+      process.env.SESSION_COOKIE_SECRET,
+      {
+        httpOnly: true,
+        maxAge: sevenDaysInSeconds,
+        sameSite: "strict",
+        secure: process.env.NODE_ENV === "production",
+      },
+    );
+
     return c.body(null, StatusCodes.OK);
   }
 
