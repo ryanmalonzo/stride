@@ -1,4 +1,3 @@
-import { sql } from "drizzle-orm";
 import { char, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { nanoid } from "nanoid";
 
@@ -11,12 +10,8 @@ export const usersTable = pgTable("users", {
     .notNull(),
   email: varchar({ length: 255 }).unique().notNull(),
   hashedPassword: varchar().notNull(),
-  createdAt: timestamp()
-    .notNull()
-    .default(sql`now()`),
-  updatedAt: timestamp()
-    .notNull()
-    .default(sql`now()`),
+  createdAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow(),
 });
 
 export const sessionsTable = pgTable("sessions", {
@@ -29,3 +24,5 @@ export const sessionsTable = pgTable("sessions", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
   expiresAt: timestamp().notNull(),
 });
+
+export type User = typeof usersTable.$inferSelect;
