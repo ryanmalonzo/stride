@@ -1,0 +1,12 @@
+{
+  "name": "stride",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "bun --filter @stride/web dev",
+    "dev:api": "bun --filter @stride/api dev"
+  }
+}
