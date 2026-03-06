@@ -1,7 +1,9 @@
 {
   "name": "@stride/api",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "db:migrate": "bunx --bun prisma migrate dev",
+    "db:generate": "bunx --bun prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
