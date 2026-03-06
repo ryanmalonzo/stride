@@ -8,5 +8,8 @@
   "scripts": {
     "dev:web": "bun --filter @stride/web dev",
     "dev:api": "bun --filter @stride/api dev"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.6"
   }
 }
