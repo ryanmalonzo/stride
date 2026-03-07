@@ -5,7 +5,8 @@ import { initReactI18next } from "react-i18next";
 i18n
 	.use(
 		resourcesToBackend(
-			(language: string) => import(`./locales/${language}.json`),
+			(language: string, namespace: string) =>
+				import(`./locales/${language}/${namespace}.json`),
 		),
 	)
 	.use(initReactI18next)

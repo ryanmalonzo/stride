@@ -1,0 +1,14 @@
+{
+	"email": {
+		"label": "Email",
+		"placeholder": "you@example.com"
+	},
+	"password": {
+		"label": "Password",
+		"placeholder": "••••••••",
+		"helperText": "At least 8 characters"
+	},
+	"confirmPassword": {
+		"label": "Confirm password"
+	}
+}
