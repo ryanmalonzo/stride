@@ -1,70 +1,54 @@
 @import "tailwindcss";
 
-:root {
-	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+@theme {
+	/* ── Fonts ── */
+	--font-sans: "DM Sans Variable", system-ui, sans-serif;
+	--font-serif: "Lora Variable", Georgia, serif;
 
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+	/* ── Brand colors ── */
+	--color-cream: #faf7f4; /* page background */
+	--color-bark: #3e2723; /* primary text, buttons */
+	--color-bark-light: #5c4033; /* journal text, secondary dark */
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
+	/* ── Stone (neutral grays) ── */
+	--color-stone-muted: #78716c; /* secondary text, ghost btn labels */
+	--color-stone-soft: #a8a29e; /* section labels, faint text */
+	--color-stone-border: #e7e5e4; /* borders, empty circles */
+	--color-stone-hover: #d7d3d0; /* hover states */
+	--color-stone-bg: #f0ece9; /* card borders */
 
-a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
-}
-a:hover {
-	color: #535bf2;
+	/* ── Semantic ── */
+	--color-success: #059669; /* done states, streaks */
+	--color-success-light: #10b981; /* heatmap mid */
+	--color-success-pale: #6ee7b7; /* heatmap low */
+	--color-warning: #d97706; /* skipped, stressed mood */
+	--color-warning-light: #f59e0b; /* secondary warning */
+
+	/* ── Mood ── */
+	--color-mood-calm: #059669;
+	--color-mood-stressed: #d97706;
+	--color-mood-energized: #7c3aed;
+	--color-mood-tired: #78716c;
+
+	/* ── Surfaces ── */
+	--color-surface: #ffffff; /* cards */
+	--color-surface-dim: #f9f7f5; /* done/skipped card bg */
+
+	/* ── Border radius ── */
+	--radius-card: 12px;
+	--radius-btn: 8px;
+	--radius-chip: 20px;
+	--radius-modal: 20px;
+
+	/* ── Shadows ── */
+	--shadow-card:
+		0 1px 3px rgba(62, 39, 35, 0.06), 0 1px 2px rgba(62, 39, 35, 0.04);
+	--shadow-card-hover: 0 4px 12px rgba(62, 39, 35, 0.1);
+	--shadow-modal: 0 -8px 32px rgba(62, 39, 35, 0.15);
 }
 
 body {
-	margin: 0;
-	display: flex;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
-}
-
-h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
-}
-
-button {
-	border-radius: 8px;
-	border: 1px solid transparent;
-	padding: 0.6em 1.2em;
-	font-size: 1em;
-	font-weight: 500;
-	font-family: inherit;
-	background-color: #1a1a1a;
-	cursor: pointer;
-	transition: border-color 0.25s;
-}
-button:hover {
-	border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
-	a:hover {
-		color: #747bff;
-	}
-	button {
-		background-color: #f9f9f9;
-	}
+	background-color: theme(--color-cream);
+	color: theme(--color-bark);
+	font-family: theme(--font-sans);
 }

@@ -28,6 +28,8 @@
       "name": "@stride/web",
       "version": "0.0.0",
       "dependencies": {
+        "@fontsource-variable/dm-sans": "^5.2.8",
+        "@fontsource-variable/lora": "^5.2.8",
         "@tanstack/react-router": "^1.166.2",
         "better-auth": "^1.5.4",
         "react": "^19.2.0",
@@ -196,6 +198,10 @@
     "@esbuild/win32-ia32": ["@esbuild/win32-ia32@0.27.3", "", { "os": "win32", "cpu": "ia32" }, "sha512-QLKSFeXNS8+tHW7tZpMtjlNb7HKau0QDpwm49u0vUp9y1WOF+PEzkU84y9GqYaAVW8aH8f3GcBck26jh54cX4Q=="],
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.27.3", "", { "os": "win32", "cpu": "x64" }, "sha512-4uJGhsxuptu3OcpVAzli+/gWusVGwZZHTlS63hh++ehExkVT8SgiEf7/uC/PclrPPkLhZqGgCTjd0VWLo6xMqA=="],
+
+    "@fontsource-variable/dm-sans": ["@fontsource-variable/dm-sans@5.2.8", "", {}, "sha512-AxkvMTvNWgfrmlyjiV05vlHYJa+nRQCf1EfvIrQAPBpFJW0O9VTz7oAFr9S3lvbWdmnFoBk7yFqQL86u64nl2g=="],
+
+    "@fontsource-variable/lora": ["@fontsource-variable/lora@5.2.8", "", {}, "sha512-cxjTJ9BbOWIzusewR4UMBLVePvTSWV6dtNaNsCkF/oKoyA68fJGWfaYCILOOP1BObE4dmjfZ3xo6m9hdHhtYhg=="],
 
     "@hono/node-server": ["@hono/node-server@1.19.9", "", { "peerDependencies": { "hono": "^4" } }, "sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw=="],
 
