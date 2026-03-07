@@ -1,14 +1,25 @@
 {
 	"email": {
 		"label": "Email",
-		"placeholder": "you@example.com"
+		"placeholder": "you@example.com",
+		"errors": {
+			"required": "Email is required",
+			"invalid": "Enter a valid email address"
+		}
 	},
 	"password": {
 		"label": "Password",
 		"placeholder": "••••••••",
-		"helperText": "At least 8 characters"
+		"helperText": "At least 8 characters",
+		"errors": {
+			"required": "Password is required",
+			"minLength": "Password must be at least 8 characters"
+		}
 	},
 	"confirmPassword": {
-		"label": "Confirm password"
+		"label": "Confirm password",
+		"errors": {
+			"match": "Passwords do not match"
+		}
 	}
 }
