@@ -2,10 +2,18 @@ import { valibotResolver } from "@hookform/resolvers/valibot";
 import { Link } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import * as v from "valibot";
+import { signUp } from "../../lib/auth-client";
 import { Button } from "../Button";
 import { InputWithLabel } from "../InputWithLabel";
 import { OrDivider } from "./OrDivider";
+
+type FormValues = {
+	email: string;
+	password: string;
+	confirmPassword: string;
+};
 
 export function SignUpForm() {
 	const { t } = useTranslation("auth");
@@ -39,12 +47,24 @@ export function SignUpForm() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<FormValues>({
 		resolver: valibotResolver(schema),
 	});
 
-	function onSubmit(data: unknown) {
-		console.log(data);
+	async function onSubmit(data: FormValues) {
+		const { email, password } = data;
+		await signUp.email(
+			{
+				email,
+				password,
+				name: email,
+			},
+			{
+				onError: ({ error }) => {
+					toast.error(error.message);
+				},
+			},
+		);
 	}
 
 	return (
