@@ -1,7 +1,9 @@
+import { valibotResolver } from "@hookform/resolvers/valibot";
 import { Link } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
+import * as v from "valibot";
 import { signIn } from "../../lib/auth-client";
 import { Button } from "../Button";
 import { InputWithLabel } from "../InputWithLabel";
@@ -16,11 +18,27 @@ export function SignInForm() {
 	const { t } = useTranslation("auth");
 	const { t: tForm } = useTranslation("form");
 
+	const schema = v.pipe(
+		v.object({
+			email: v.pipe(
+				v.string(),
+				v.nonEmpty(tForm("email.errors.required")),
+				v.email(tForm("email.errors.invalid")),
+			),
+			password: v.pipe(
+				v.string(),
+				v.nonEmpty(tForm("password.errors.required")),
+			),
+		}),
+	);
+
 	const {
 		register,
 		handleSubmit,
-		formState: { isSubmitting },
-	} = useForm<FormValues>();
+		formState: { errors, isSubmitting },
+	} = useForm<FormValues>({
+		resolver: valibotResolver(schema),
+	});
 
 	async function onSubmit({ email, password }: FormValues) {
 		await signIn.email(
@@ -35,12 +53,13 @@ export function SignInForm() {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)} noValidate>
 				<InputWithLabel
 					label={tForm("email.label")}
 					type="email"
 					placeholder={tForm("email.placeholder")}
 					autoComplete="email"
+					error={errors.email?.message}
 					{...register("email")}
 				/>
 				<InputWithLabel
@@ -48,6 +67,7 @@ export function SignInForm() {
 					type="password"
 					placeholder={tForm("password.placeholder")}
 					autoComplete="current-password"
+					error={errors.password?.message}
 					{...register("password")}
 				/>
 
