@@ -1,5 +1,36 @@
 {
-	"common": {
-		"appName": "Stride"
+	"auth": {
+		"signIn": {
+			"title": "Welcome back",
+			"subtitle": "Pick up where you left off.",
+			"forgotPassword": "Forgot password?",
+			"signIn": "Sign in",
+			"dontHaveAnAccount": "Don't have an account?",
+			"createOne": "Create one"
+		},
+		"signUp": {
+			"title": "Start your stride",
+			"subtitle": "Build habits that actually stick.",
+			"createAccount": "Create account",
+			"alreadyHaveAnAccount": "Already have an account?"
+		},
+		"footer": "Self-hosted · Open source · Your data stays yours"
+	},
+	"form": {
+		"email": {
+			"label": "Email",
+			"placeholder": "you@example.com"
+		},
+		"password": {
+			"label": "Password",
+			"placeholder": "••••••••",
+			"helperText": "At least 8 characters"
+		},
+		"confirmPassword": {
+			"label": "Confirm password"
+		}
+	},
+	"misc": {
+		"or": "or"
 	}
 }
