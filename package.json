@@ -9,9 +9,15 @@
 		"dev:web": "bun --filter @stride/web dev",
 		"dev:api": "bun --filter @stride/api dev",
 		"db:migrate": "bun --filter @stride/api db:migrate",
-		"db:generate": "bun --filter @stride/api db:generate"
+		"db:generate": "bun --filter @stride/api db:generate",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{js,ts,jsx,tsx,json,css}": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.6"
+		"@biomejs/biome": "2.4.6",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.3.2"
 	}
 }
