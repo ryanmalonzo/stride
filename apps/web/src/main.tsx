@@ -4,6 +4,7 @@ import { routeTree } from "./routeTree.gen";
 import "@fontsource-variable/dm-sans";
 import "@fontsource-variable/lora";
 import "./index.css";
+import "./i18n";
 
 const router = createRouter({
 	routeTree,
