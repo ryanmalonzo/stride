@@ -1,7 +1,10 @@
+import { trpcServer } from "@hono/trpc-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
-import { auth } from "../lib/auth";
+import { auth } from "./lib/auth";
+import { createContext } from "./lib/context";
+import { appRouter } from "./routers";
 
 const app = new Hono<{
 	Variables: {
@@ -37,5 +40,13 @@ app.use("*", async (c, next) => {
 });
 
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
+
+app.use(
+	"/trpc/*",
+	trpcServer({
+		router: appRouter,
+		createContext,
+	}),
+);
 
 export default app;
