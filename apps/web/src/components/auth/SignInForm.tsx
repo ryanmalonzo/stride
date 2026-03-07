@@ -16,7 +16,11 @@ export function SignInForm() {
 	const { t } = useTranslation("auth");
 	const { t: tForm } = useTranslation("form");
 
-	const { register, handleSubmit } = useForm<FormValues>();
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting },
+	} = useForm<FormValues>();
 
 	async function onSubmit({ email, password }: FormValues) {
 		await signIn.email(
@@ -56,7 +60,9 @@ export function SignInForm() {
 					</a>
 				</div>
 
-				<Button type="submit">{t("signIn.signIn")}</Button>
+				<Button type="submit" loading={isSubmitting}>
+					{t("signIn.signIn")}
+				</Button>
 			</form>
 
 			<OrDivider />

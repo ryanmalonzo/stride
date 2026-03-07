@@ -46,7 +46,7 @@ export function SignUpForm() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isSubmitting },
 	} = useForm<FormValues>({
 		resolver: valibotResolver(schema),
 	});
@@ -95,7 +95,9 @@ export function SignUpForm() {
 					{...register("confirmPassword")}
 				/>
 
-				<Button type="submit">{t("signUp.createAccount")}</Button>
+				<Button type="submit" loading={isSubmitting}>
+					{t("signUp.createAccount")}
+				</Button>
 			</form>
 
 			<OrDivider />
