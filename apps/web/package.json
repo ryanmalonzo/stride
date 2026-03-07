@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.2.8",
+    "@fontsource-variable/lora": "^5.2.8",
     "@tanstack/react-router": "^1.166.2",
     "better-auth": "^1.5.4",
     "react": "^19.2.0",
