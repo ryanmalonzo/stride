@@ -1,5 +1,5 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -15,6 +15,7 @@ type FormValues = {
 };
 
 export function SignInForm() {
+	const navigate = useNavigate();
 	const { t } = useTranslation("auth");
 	const { t: tForm } = useTranslation("form");
 
@@ -44,6 +45,9 @@ export function SignInForm() {
 		await signIn.email(
 			{ email, password },
 			{
+				onSuccess: () => {
+					navigate({ to: "/onboarding" });
+				},
 				onError: ({ error }) => {
 					toast.error(error.message);
 				},
