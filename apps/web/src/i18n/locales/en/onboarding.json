@@ -1,0 +1,5 @@
+{
+	"progress": {
+		"stepLabel": "Step {{current}} of {{total}}"
+	}
+}
