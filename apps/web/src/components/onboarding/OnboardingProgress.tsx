@@ -14,9 +14,9 @@ export function OnboardingProgress({
 
 	return (
 		<div className="flex w-full max-w-xs flex-col gap-1">
-			<div className="h-[3px] w-full rounded-full bg-stone-border">
+			<div className="h-0.75 w-full rounded-full bg-stone-border">
 				<div
-					className="h-[3px] rounded-full bg-success transition-[width] duration-400 ease-in-out"
+					className="h-0.75 rounded-full bg-success transition-[width] duration-400 ease-in-out"
 					style={{ width: `${progress * 100}%` }}
 				/>
 			</div>
