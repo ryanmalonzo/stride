@@ -18,7 +18,7 @@ export const Route = createFileRoute("/onboarding")({
 	beforeLoad: async () => {
 		const { data: session } = await getSession();
 		if (session?.user.onboardingCompletedAt) {
-			throw redirect({ to: "/" });
+			throw redirect({ to: "/dashboard" });
 		}
 	},
 	component: OnboardingLayout,
