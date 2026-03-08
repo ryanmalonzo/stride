@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@stride/common": "workspace:*",
 		"@fontsource-variable/dm-sans": "^5.2.8",
 		"@fontsource-variable/lora": "^5.2.8",
 		"@hookform/resolvers": "^5.2.2",
