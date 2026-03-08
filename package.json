@@ -11,6 +11,7 @@
 		"dev:api": "bun --filter @stride/api dev",
 		"db:generate": "bun --filter @stride/api db:generate",
 		"db:migrate": "cd apps/api && bunx --bun prisma migrate dev",
+		"setup": "bun install && bun run db:migrate && bun run db:generate",
 		"prepare": "husky"
 	},
 	"lint-staged": {
