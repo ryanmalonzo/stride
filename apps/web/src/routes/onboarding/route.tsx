@@ -1,6 +1,7 @@
 import {
 	createFileRoute,
 	Outlet,
+	redirect,
 	useLocation,
 	useNavigate,
 } from "@tanstack/react-router";
@@ -11,8 +12,15 @@ import {
 	ONBOARDING_STEPS,
 	type OnboardingStep,
 } from "../../constants/onboardingSteps";
+import { getSession } from "../../lib/auth-client";
 
 export const Route = createFileRoute("/onboarding")({
+	beforeLoad: async () => {
+		const { data: session } = await getSession();
+		if (session?.user.onboardingCompletedAt) {
+			throw redirect({ to: "/" });
+		}
+	},
 	component: OnboardingLayout,
 });
 
