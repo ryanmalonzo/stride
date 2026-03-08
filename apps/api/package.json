@@ -3,7 +3,8 @@
 	"scripts": {
 		"dev": "bun run --hot src/index.ts",
 		"db:migrate": "bunx --bun prisma migrate dev",
-		"db:generate": "bunx --bun prisma generate"
+		"db:generate": "bunx --bun prisma generate",
+		"db:studio": "bunx --bun prisma studio"
 	},
 	"dependencies": {
 		"@hono/trpc-server": "^0.4.2",
