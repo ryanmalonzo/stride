@@ -47,7 +47,7 @@ export function OnboardingIdentityPage() {
 							/>
 						))}
 						<ToggleCard
-							icon="✦"
+							icon="✨"
 							label={t("identity.other")}
 							selected={selectedIdentityKeys.includes("other")}
 							onClick={() => toggle("other")}
