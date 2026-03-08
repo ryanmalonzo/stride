@@ -11,6 +11,7 @@ const router = createRouter({
 	defaultPreload: "intent",
 	scrollRestoration: true,
 });
+
 declare module "@tanstack/react-router" {
 	interface Register {
 		router: typeof router;

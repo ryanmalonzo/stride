@@ -1,5 +1,5 @@
 import type { OnboardingInput } from "@stride/common";
-import { createContext, useContext, useState } from "react";
+import { create } from "zustand";
 
 export type OnboardingData = {
 	selectedIdentityKeys: string[];
@@ -51,35 +51,13 @@ const defaultData: OnboardingData = {
 	reminder: null,
 };
 
-interface OnboardingContextValue {
+interface OnboardingStore {
 	data: OnboardingData;
 	setData: (partial: Partial<OnboardingData>) => void;
 }
 
-const OnboardingContext = createContext<OnboardingContextValue | null>(null);
-
-export function OnboardingProvider({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
-	const [data, setDataRaw] = useState<OnboardingData>(defaultData);
-
-	function setData(partial: Partial<OnboardingData>) {
-		setDataRaw((prev) => ({ ...prev, ...partial }));
-	}
-
-	return (
-		<OnboardingContext.Provider value={{ data, setData }}>
-			{children}
-		</OnboardingContext.Provider>
-	);
-}
-
-export function useOnboarding(): OnboardingContextValue {
-	const ctx = useContext(OnboardingContext);
-	if (!ctx) {
-		throw new Error("useOnboarding must be used within OnboardingProvider");
-	}
-	return ctx;
-}
+export const useOnboardingStore = create<OnboardingStore>((set) => ({
+	data: defaultData,
+	setData: (partial) =>
+		set((state) => ({ data: { ...state.data, ...partial } })),
+}));
