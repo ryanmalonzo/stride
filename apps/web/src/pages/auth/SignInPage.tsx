@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { AppLogo } from "../components/AppLogo";
-import { SignInForm } from "../components/auth/SignInForm";
+import { AppLogo } from "../../components/AppLogo";
+import { SignInForm } from "../../components/auth/SignInForm";
 
 export function SignInPage() {
 	const { t } = useTranslation("auth");
