@@ -1,5 +1,14 @@
 import type { OnboardingInput } from "@stride/common";
 import { create } from "zustand";
+import i18n from "../i18n";
+
+export const IDENTITIES = [
+	{ id: "athlete", icon: "🏃", label: "An athlete" },
+	{ id: "reader", icon: "📚", label: "A reader" },
+	{ id: "artist", icon: "✏️", label: "An artist" },
+	{ id: "finance", icon: "💰", label: "Financially responsible" },
+	{ id: "learner", icon: "🇯🇵", label: "A polyglot" },
+] as const;
 
 export type OnboardingData = {
 	selectedIdentityKeys: string[];
@@ -25,17 +34,17 @@ export type OnboardingData = {
 	reminder: "browser" | "advanced" | null;
 };
 
-const IDENTITY_LABELS: Record<string, string> = {
-	athlete: "An athlete",
-	reader: "A reader",
-	creator: "A creator",
-	finance: "Financially responsible",
-	learner: "A learner",
-};
+const IDENTITY_LABEL_MAP = Object.fromEntries(
+	IDENTITIES.map(({ id, label }) => [id, label]),
+);
 
 export function toOnboardingInput(data: OnboardingData): OnboardingInput {
 	const identities = data.selectedIdentityKeys.map((key) =>
-		key === "other" ? data.otherIdentity : (IDENTITY_LABELS[key] ?? key),
+		key === "other"
+			? data.otherIdentity
+			: i18n.t(`onboarding:identity.options.${key}`, {
+					defaultValue: IDENTITY_LABEL_MAP[key],
+				}),
 	);
 	return { identities };
 }

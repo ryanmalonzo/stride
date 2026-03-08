@@ -1,5 +1,20 @@
 {
 	"progress": {
 		"stepLabel": "Step {{current}} of {{total}}"
+	},
+	"identity": {
+		"title": "Who do you want to become?",
+		"subtitle": "Choose up to 3 that resonate. These become your north star.",
+		"other": "Other",
+		"otherPlaceholder": "e.g., A better parent, A minimalist…",
+		"hintComplete": "That's your three ✦",
+		"hintRemaining": "{{count}} more to go, or continue as is",
+		"options": {
+			"athlete": "An athlete",
+			"reader": "A reader",
+			"artist": "An artist",
+			"finance": "Financially responsible",
+			"learner": "A polyglot"
+		}
 	}
 }
