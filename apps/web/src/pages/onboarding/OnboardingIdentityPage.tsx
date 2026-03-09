@@ -76,8 +76,7 @@ export function OnboardingIdentityPage() {
 					<button
 						type="button"
 						disabled={selectedIdentityKeys.length === 0}
-						// TODO: Uncomment once implemented
-						// onClick={() => navigate({ to: ONBOARDING_STEPS[1] })}
+						onClick={() => navigate({ to: ONBOARDING_STEPS[1] })}
 						className="cursor-pointer rounded-[10px] bg-bark px-7 py-3.25 text-[15px] font-semibold text-cream transition-opacity duration-150 disabled:cursor-not-allowed disabled:opacity-35 hover:opacity-88"
 					>
 						{tMisc("continue")}

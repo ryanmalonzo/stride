@@ -10,6 +10,14 @@ export const IDENTITIES = [
 	{ id: "learner", icon: "🇯🇵", label: "A polyglot" },
 ] as const;
 
+export const STRUGGLES = [
+	{ id: "consistency", label: "I start habits but don't stick with them" },
+	{ id: "forgetting", label: "I forget to do things I want to do" },
+	{ id: "motivation", label: "I know what to do but don't feel motivated" },
+	{ id: "busy", label: "I'm too tired or busy for new habits" },
+	{ id: "tracking", label: "I lose track of my progress" },
+] as const;
+
 export type OnboardingData = {
 	selectedIdentityKeys: string[];
 	otherIdentity: string;
@@ -38,6 +46,10 @@ const IDENTITY_LABEL_MAP = Object.fromEntries(
 	IDENTITIES.map(({ id, label }) => [id, label]),
 );
 
+const STRUGGLE_LABEL_MAP = Object.fromEntries(
+	STRUGGLES.map(({ id, label }) => [id, label]),
+);
+
 export function toOnboardingInput(data: OnboardingData): OnboardingInput {
 	const identities = data.selectedIdentityKeys.map((key) =>
 		key === "other"
@@ -46,7 +58,12 @@ export function toOnboardingInput(data: OnboardingData): OnboardingInput {
 					defaultValue: IDENTITY_LABEL_MAP[key],
 				}),
 	);
-	return { identities };
+	const struggles = data.selectedStruggleKeys.map((key) =>
+		i18n.t(`onboarding:struggles.options.${key}`, {
+			defaultValue: STRUGGLE_LABEL_MAP[key],
+		}),
+	);
+	return { identities, struggles };
 }
 
 const defaultData: OnboardingData = {

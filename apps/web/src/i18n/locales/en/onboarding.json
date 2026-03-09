@@ -16,5 +16,16 @@
 			"finance": "Financially responsible",
 			"learner": "A polyglot"
 		}
+	},
+	"struggles": {
+		"title": "What's been getting in your way?",
+		"subtitle": "Pick everything that applies. No judgment here.",
+		"options": {
+			"consistency": "I start habits but don't stick with them",
+			"forgetting": "I forget to do things I want to do",
+			"motivation": "I know what to do but don't feel motivated",
+			"busy": "I'm too tired or busy for new habits",
+			"tracking": "I lose track of my progress"
+		}
 	}
 }

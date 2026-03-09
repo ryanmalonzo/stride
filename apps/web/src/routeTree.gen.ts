@@ -13,6 +13,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as OnboardingRouteRouteImport } from './routes/onboarding/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding/index'
+import { Route as OnboardingStrugglesRouteImport } from './routes/onboarding/struggles'
 import { Route as OnboardingIdentityRouteImport } from './routes/onboarding/identity'
 import { Route as authSignUpRouteImport } from './routes/(auth)/sign-up'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
@@ -35,6 +36,11 @@ const IndexRoute = IndexRouteImport.update({
 const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => OnboardingRouteRoute,
+} as any)
+const OnboardingStrugglesRoute = OnboardingStrugglesRouteImport.update({
+  id: '/struggles',
+  path: '/struggles',
   getParentRoute: () => OnboardingRouteRoute,
 } as any)
 const OnboardingIdentityRoute = OnboardingIdentityRouteImport.update({
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
   '/onboarding/identity': typeof OnboardingIdentityRoute
+  '/onboarding/struggles': typeof OnboardingStrugglesRoute
   '/onboarding/': typeof OnboardingIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
   '/onboarding/identity': typeof OnboardingIdentityRoute
+  '/onboarding/struggles': typeof OnboardingStrugglesRoute
   '/onboarding': typeof OnboardingIndexRoute
 }
 export interface FileRoutesById {
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/(auth)/sign-in': typeof authSignInRoute
   '/(auth)/sign-up': typeof authSignUpRoute
   '/onboarding/identity': typeof OnboardingIdentityRoute
+  '/onboarding/struggles': typeof OnboardingStrugglesRoute
   '/onboarding/': typeof OnboardingIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/onboarding/identity'
+    | '/onboarding/struggles'
     | '/onboarding/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/onboarding/identity'
+    | '/onboarding/struggles'
     | '/onboarding'
   id:
     | '__root__'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/(auth)/sign-in'
     | '/(auth)/sign-up'
     | '/onboarding/identity'
+    | '/onboarding/struggles'
     | '/onboarding/'
   fileRoutesById: FileRoutesById
 }
@@ -147,6 +159,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingIndexRouteImport
       parentRoute: typeof OnboardingRouteRoute
     }
+    '/onboarding/struggles': {
+      id: '/onboarding/struggles'
+      path: '/struggles'
+      fullPath: '/onboarding/struggles'
+      preLoaderRoute: typeof OnboardingStrugglesRouteImport
+      parentRoute: typeof OnboardingRouteRoute
+    }
     '/onboarding/identity': {
       id: '/onboarding/identity'
       path: '/identity'
@@ -173,11 +192,13 @@ declare module '@tanstack/react-router' {
 
 interface OnboardingRouteRouteChildren {
   OnboardingIdentityRoute: typeof OnboardingIdentityRoute
+  OnboardingStrugglesRoute: typeof OnboardingStrugglesRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
 const OnboardingRouteRouteChildren: OnboardingRouteRouteChildren = {
   OnboardingIdentityRoute: OnboardingIdentityRoute,
+  OnboardingStrugglesRoute: OnboardingStrugglesRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
 
