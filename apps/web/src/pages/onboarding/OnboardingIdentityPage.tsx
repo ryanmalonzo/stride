@@ -1,5 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Button } from "../../components/Button";
 import { ToggleCard } from "../../components/ui/ToggleCard";
 import { ONBOARDING_STEPS } from "../../constants/onboardingSteps";
 import { IDENTITIES, useOnboardingStore } from "../../stores/onboardingStore";
@@ -73,14 +75,14 @@ export function OnboardingIdentityPage() {
 				</div>
 
 				<div className="flex items-center justify-end">
-					<button
-						type="button"
+					<Button
+						fullWidth={false}
 						disabled={selectedIdentityKeys.length === 0}
 						onClick={() => navigate({ to: ONBOARDING_STEPS[1] })}
-						className="cursor-pointer rounded-[10px] bg-bark px-7 py-3.25 text-[15px] font-semibold text-cream transition-opacity duration-150 disabled:cursor-not-allowed disabled:opacity-35 hover:opacity-88"
+						icon={<ArrowRight size={16} />}
 					>
 						{tMisc("continue")}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</main>

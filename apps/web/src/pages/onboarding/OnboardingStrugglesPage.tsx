@@ -1,5 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Button } from "../../components/Button";
 import { CheckRow } from "../../components/ui/CheckRow";
 import { ONBOARDING_STEPS } from "../../constants/onboardingSteps";
 import { STRUGGLES, useOnboardingStore } from "../../stores/onboardingStore";
@@ -43,21 +45,21 @@ export function OnboardingStrugglesPage() {
 				</div>
 
 				<div className="flex items-center justify-between">
-					<button
-						type="button"
+					<Button
+						fullWidth={false}
+						variant="ghost"
 						onClick={() => navigate({ to: ONBOARDING_STEPS[0] })}
-						className="cursor-pointer rounded-[10px] px-7 py-3.25 text-[15px] font-semibold text-stone-muted transition-opacity duration-150 hover:opacity-70"
 					>
 						{tMisc("back")}
-					</button>
-					<button
-						type="button"
+					</Button>
+					<Button
+						fullWidth={false}
 						disabled={selectedStruggleKeys.length === 0}
 						// onClick={() => navigate({ to: ONBOARDING_STEPS[2] })}
-						className="cursor-pointer rounded-[10px] bg-bark px-7 py-3.25 text-[15px] font-semibold text-cream transition-opacity duration-150 disabled:cursor-not-allowed disabled:opacity-35 hover:opacity-88"
+						icon={<ArrowRight size={16} />}
 					>
 						{tMisc("continue")}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</main>
