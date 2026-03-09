@@ -14,6 +14,13 @@ export const onboardingRouter = router({
 					})),
 				});
 
+				await tx.struggle.createMany({
+					data: input.struggles.map((label) => ({
+						userId: ctx.user.id,
+						label,
+					})),
+				});
+
 				await tx.user.update({
 					where: { id: ctx.user.id },
 					data: { onboardingCompletedAt: new Date() },
