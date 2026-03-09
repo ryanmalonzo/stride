@@ -3,7 +3,11 @@ import { useTranslation } from "react-i18next";
 import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
 import { CheckRow } from "../../components/ui/CheckRow";
 import { ONBOARDING_STEPS } from "../../constants/onboardingSteps";
-import { STRUGGLES, useOnboardingStore } from "../../stores/onboardingStore";
+import {
+	STRUGGLES,
+	type StruggleId,
+	useOnboardingStore,
+} from "../../stores/onboardingStore";
 
 export function OnboardingStrugglesPage() {
 	const { t } = useTranslation("onboarding");
@@ -11,7 +15,7 @@ export function OnboardingStrugglesPage() {
 	const { data, setData } = useOnboardingStore();
 	const { selectedStruggleKeys } = data;
 
-	function toggle(id: string) {
+	function toggle(id: StruggleId) {
 		setData({
 			selectedStruggleKeys: selectedStruggleKeys.includes(id)
 				? selectedStruggleKeys.filter((k) => k !== id)

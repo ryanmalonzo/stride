@@ -1,9 +1,14 @@
 import { useNavigate } from "@tanstack/react-router";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
 import { ToggleCard } from "../../components/ui/ToggleCard";
 import { ONBOARDING_STEPS } from "../../constants/onboardingSteps";
-import { IDENTITIES, useOnboardingStore } from "../../stores/onboardingStore";
+import {
+	IDENTITIES,
+	type IdentityId,
+	useOnboardingStore,
+} from "../../stores/onboardingStore";
 
 const MAX = 3;
 
@@ -13,7 +18,7 @@ export function OnboardingIdentityPage() {
 	const { data, setData } = useOnboardingStore();
 	const { selectedIdentityKeys, otherIdentity } = data;
 
-	function toggle(id: string) {
+	function toggle(id: IdentityId) {
 		if (selectedIdentityKeys.includes(id)) {
 			setData({
 				selectedIdentityKeys: selectedIdentityKeys.filter((k) => k !== id),
@@ -25,12 +30,19 @@ export function OnboardingIdentityPage() {
 
 	const remaining = MAX - selectedIdentityKeys.length;
 
+	const isContinueEnabled = useMemo(() => {
+		if (selectedIdentityKeys.includes("other")) {
+			return otherIdentity.length > 0;
+		}
+		return selectedIdentityKeys.length > 0;
+	}, [selectedIdentityKeys, otherIdentity]);
+
 	return (
 		<OnboardingStepLayout
 			title={t("identity.title")}
 			subtitle={t("identity.subtitle")}
 			onContinue={() => navigate({ to: ONBOARDING_STEPS[1] })}
-			isContinueEnabled={selectedIdentityKeys.length > 0}
+			isContinueEnabled={isContinueEnabled}
 		>
 			<div className="grid grid-cols-2 gap-2.5">
 				{IDENTITIES.map(({ id, icon, label }) => (

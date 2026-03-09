@@ -18,11 +18,14 @@ export const STRUGGLES = [
 	{ id: "tracking", label: "I lose track of my progress" },
 ] as const;
 
+export type IdentityId = (typeof IDENTITIES)[number]["id"] | "other";
+export type StruggleId = (typeof STRUGGLES)[number]["id"];
+
 export type OnboardingData = {
-	selectedIdentityKeys: string[];
+	selectedIdentityKeys: IdentityId[];
 	otherIdentity: string;
 
-	selectedStruggleKeys: string[];
+	selectedStruggleKeys: StruggleId[];
 
 	habitType: "intention" | "stack" | null;
 
