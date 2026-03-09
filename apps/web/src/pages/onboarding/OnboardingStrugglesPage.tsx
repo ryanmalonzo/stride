@@ -20,7 +20,7 @@ export function OnboardingStrugglesPage() {
 	}
 
 	return (
-		<main className="flex flex-1 items-start justify-center px-6 pt-12 pb-20">
+		<main className="flex flex-1 items-start justify-center px-6 pt-4 lg:pt-12 pb-20">
 			<div className="flex w-full max-w-140 flex-col gap-8">
 				<div className="flex flex-col">
 					<h1 className="mb-2.5 font-serif text-[30px] font-semibold leading-[1.2] tracking-[-0.5px]">

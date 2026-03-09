@@ -1,19 +1,22 @@
 import { useTranslation } from "react-i18next";
+import { twMerge } from "tailwind-merge";
 
 interface OnboardingProgressProps {
 	currentStep: number;
 	totalSteps: number;
+	className?: string;
 }
 
-export function OnboardingProgress({
+export function OnboardingProgressBar({
 	currentStep,
 	totalSteps,
+	className,
 }: OnboardingProgressProps) {
 	const { t } = useTranslation("onboarding");
 	const progress = currentStep / totalSteps;
 
 	return (
-		<div className="flex w-full max-w-xs flex-col gap-1">
+		<div className={twMerge("flex w-full max-w-xs flex-col gap-1", className)}>
 			<div className="h-0.75 w-full rounded-full bg-stone-border">
 				<div
 					className="h-0.75 rounded-full bg-success transition-[width] duration-400 ease-in-out"
