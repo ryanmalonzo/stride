@@ -27,5 +27,24 @@
 			"busy": "I'm too tired or busy for new habits",
 			"tracking": "I lose track of my progress"
 		}
+	},
+	"habitType": {
+		"title": "Build your first habit",
+		"subtitle": "Choose the approach that feels more natural to you.",
+		"back": "Back",
+		"continue": "Continue",
+		"selected": "Selected",
+		"options": {
+			"intention": {
+				"title": "Implementation intention",
+				"description": "Anchor your habit to a specific time and place. Great for building something new from scratch.",
+				"example": "\"I will meditate at 7 AM in my bedroom.\""
+			},
+			"stack": {
+				"title": "Habit stacking",
+				"description": "Attach your new habit to something you already do every day.",
+				"example": "\"After I pour my morning coffee, I will journal.\""
+			}
+		}
 	}
 }

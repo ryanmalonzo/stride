@@ -2,8 +2,10 @@ interface CueCardProps {
 	icon: string;
 	title: string;
 	description: string;
+	example?: string;
 	selected: boolean;
 	onClick: () => void;
+	selectedLabel: string;
 	recommended?: boolean;
 	muted?: boolean;
 }
@@ -12,8 +14,10 @@ export function CueCard({
 	icon,
 	title,
 	description,
+	example,
 	selected,
 	onClick,
+	selectedLabel,
 	recommended,
 	muted,
 }: CueCardProps) {
@@ -21,29 +25,34 @@ export function CueCard({
 		<button
 			type="button"
 			onClick={onClick}
-			className={`flex w-full cursor-pointer items-center gap-3.5 rounded-[12px] border-[1.5px] bg-surface px-4.5 py-4 text-left transition-all duration-150 ${selected ? "border-bark bg-bark/2" : "border-stone-border"} ${muted ? "border-dashed" : ""}`}
+			className={`flex w-full cursor-pointer flex-col gap-2 rounded-[14px] border-[1.5px] bg-surface px-4.5 py-5 text-left transition-colors duration-150 ${selected ? "border-bark bg-bark/4" : "border-stone-border"} ${muted ? "border-dashed" : ""}`}
 		>
-			<span className="shrink-0 text-[22px]">{icon}</span>
-			<div className="flex-1">
-				<div className="mb-0.5 flex items-center gap-2">
-					<div className="text-[14px] font-semibold text-bark">{title}</div>
-					{recommended && (
-						<span className="rounded-[20px] border border-success/30 bg-success/8 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.06em] text-success">
-							Recommended
-						</span>
-					)}
-				</div>
-				<div
-					className={`text-[13px] ${muted ? "text-stone-soft" : "text-stone-muted"}`}
-				>
-					{description}
-				</div>
+			<span className="text-2xl" role="img" aria-hidden="true">
+				{icon}
+			</span>
+			<div className="flex items-center gap-2">
+				<span className="text-[14px] font-bold text-bark">{title}</span>
+				{recommended && (
+					<span className="rounded-[20px] border border-success/30 bg-success/8 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.06em] text-success">
+						Recommended
+					</span>
+				)}
 			</div>
-			{selected && (
-				<div className="ml-auto shrink-0 text-[16px] font-bold text-success">
-					✓
-				</div>
+			<p
+				className={`text-[13px] leading-normal ${muted ? "text-stone-soft" : "text-stone-muted"}`}
+			>
+				{description}
+			</p>
+			{example && (
+				<p className="font-serif text-[12px] italic leading-normal text-stone-soft">
+					{example}
+				</p>
 			)}
+			<span
+				className={`mt-1 text-[12px] font-semibold text-success ${selected ? "visible" : "invisible"}`}
+			>
+				✓ {selectedLabel}
+			</span>
 		</button>
 	);
 }
