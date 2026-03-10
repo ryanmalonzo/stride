@@ -13,8 +13,13 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as OnboardingRouteRouteImport } from './routes/onboarding/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OnboardingIndexRouteImport } from './routes/onboarding/index'
+import { Route as OnboardingTinyRouteImport } from './routes/onboarding/tiny'
 import { Route as OnboardingStrugglesRouteImport } from './routes/onboarding/struggles'
+import { Route as OnboardingReminderRouteImport } from './routes/onboarding/reminder'
 import { Route as OnboardingIdentityRouteImport } from './routes/onboarding/identity'
+import { Route as OnboardingHabitTypeRouteImport } from './routes/onboarding/habit-type'
+import { Route as OnboardingHabitBuildRouteImport } from './routes/onboarding/habit-build'
+import { Route as OnboardingDoneRouteImport } from './routes/onboarding/done'
 import { Route as authSignUpRouteImport } from './routes/(auth)/sign-up'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 
@@ -38,14 +43,39 @@ const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => OnboardingRouteRoute,
 } as any)
+const OnboardingTinyRoute = OnboardingTinyRouteImport.update({
+  id: '/tiny',
+  path: '/tiny',
+  getParentRoute: () => OnboardingRouteRoute,
+} as any)
 const OnboardingStrugglesRoute = OnboardingStrugglesRouteImport.update({
   id: '/struggles',
   path: '/struggles',
   getParentRoute: () => OnboardingRouteRoute,
 } as any)
+const OnboardingReminderRoute = OnboardingReminderRouteImport.update({
+  id: '/reminder',
+  path: '/reminder',
+  getParentRoute: () => OnboardingRouteRoute,
+} as any)
 const OnboardingIdentityRoute = OnboardingIdentityRouteImport.update({
   id: '/identity',
   path: '/identity',
+  getParentRoute: () => OnboardingRouteRoute,
+} as any)
+const OnboardingHabitTypeRoute = OnboardingHabitTypeRouteImport.update({
+  id: '/habit-type',
+  path: '/habit-type',
+  getParentRoute: () => OnboardingRouteRoute,
+} as any)
+const OnboardingHabitBuildRoute = OnboardingHabitBuildRouteImport.update({
+  id: '/habit-build',
+  path: '/habit-build',
+  getParentRoute: () => OnboardingRouteRoute,
+} as any)
+const OnboardingDoneRoute = OnboardingDoneRouteImport.update({
+  id: '/done',
+  path: '/done',
   getParentRoute: () => OnboardingRouteRoute,
 } as any)
 const authSignUpRoute = authSignUpRouteImport.update({
@@ -65,8 +95,13 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
+  '/onboarding/done': typeof OnboardingDoneRoute
+  '/onboarding/habit-build': typeof OnboardingHabitBuildRoute
+  '/onboarding/habit-type': typeof OnboardingHabitTypeRoute
   '/onboarding/identity': typeof OnboardingIdentityRoute
+  '/onboarding/reminder': typeof OnboardingReminderRoute
   '/onboarding/struggles': typeof OnboardingStrugglesRoute
+  '/onboarding/tiny': typeof OnboardingTinyRoute
   '/onboarding/': typeof OnboardingIndexRoute
 }
 export interface FileRoutesByTo {
@@ -74,8 +109,13 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
+  '/onboarding/done': typeof OnboardingDoneRoute
+  '/onboarding/habit-build': typeof OnboardingHabitBuildRoute
+  '/onboarding/habit-type': typeof OnboardingHabitTypeRoute
   '/onboarding/identity': typeof OnboardingIdentityRoute
+  '/onboarding/reminder': typeof OnboardingReminderRoute
   '/onboarding/struggles': typeof OnboardingStrugglesRoute
+  '/onboarding/tiny': typeof OnboardingTinyRoute
   '/onboarding': typeof OnboardingIndexRoute
 }
 export interface FileRoutesById {
@@ -85,8 +125,13 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/(auth)/sign-in': typeof authSignInRoute
   '/(auth)/sign-up': typeof authSignUpRoute
+  '/onboarding/done': typeof OnboardingDoneRoute
+  '/onboarding/habit-build': typeof OnboardingHabitBuildRoute
+  '/onboarding/habit-type': typeof OnboardingHabitTypeRoute
   '/onboarding/identity': typeof OnboardingIdentityRoute
+  '/onboarding/reminder': typeof OnboardingReminderRoute
   '/onboarding/struggles': typeof OnboardingStrugglesRoute
+  '/onboarding/tiny': typeof OnboardingTinyRoute
   '/onboarding/': typeof OnboardingIndexRoute
 }
 export interface FileRouteTypes {
@@ -97,8 +142,13 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/sign-in'
     | '/sign-up'
+    | '/onboarding/done'
+    | '/onboarding/habit-build'
+    | '/onboarding/habit-type'
     | '/onboarding/identity'
+    | '/onboarding/reminder'
     | '/onboarding/struggles'
+    | '/onboarding/tiny'
     | '/onboarding/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -106,8 +156,13 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/sign-in'
     | '/sign-up'
+    | '/onboarding/done'
+    | '/onboarding/habit-build'
+    | '/onboarding/habit-type'
     | '/onboarding/identity'
+    | '/onboarding/reminder'
     | '/onboarding/struggles'
+    | '/onboarding/tiny'
     | '/onboarding'
   id:
     | '__root__'
@@ -116,8 +171,13 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/(auth)/sign-in'
     | '/(auth)/sign-up'
+    | '/onboarding/done'
+    | '/onboarding/habit-build'
+    | '/onboarding/habit-type'
     | '/onboarding/identity'
+    | '/onboarding/reminder'
     | '/onboarding/struggles'
+    | '/onboarding/tiny'
     | '/onboarding/'
   fileRoutesById: FileRoutesById
 }
@@ -159,6 +219,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingIndexRouteImport
       parentRoute: typeof OnboardingRouteRoute
     }
+    '/onboarding/tiny': {
+      id: '/onboarding/tiny'
+      path: '/tiny'
+      fullPath: '/onboarding/tiny'
+      preLoaderRoute: typeof OnboardingTinyRouteImport
+      parentRoute: typeof OnboardingRouteRoute
+    }
     '/onboarding/struggles': {
       id: '/onboarding/struggles'
       path: '/struggles'
@@ -166,11 +233,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingStrugglesRouteImport
       parentRoute: typeof OnboardingRouteRoute
     }
+    '/onboarding/reminder': {
+      id: '/onboarding/reminder'
+      path: '/reminder'
+      fullPath: '/onboarding/reminder'
+      preLoaderRoute: typeof OnboardingReminderRouteImport
+      parentRoute: typeof OnboardingRouteRoute
+    }
     '/onboarding/identity': {
       id: '/onboarding/identity'
       path: '/identity'
       fullPath: '/onboarding/identity'
       preLoaderRoute: typeof OnboardingIdentityRouteImport
+      parentRoute: typeof OnboardingRouteRoute
+    }
+    '/onboarding/habit-type': {
+      id: '/onboarding/habit-type'
+      path: '/habit-type'
+      fullPath: '/onboarding/habit-type'
+      preLoaderRoute: typeof OnboardingHabitTypeRouteImport
+      parentRoute: typeof OnboardingRouteRoute
+    }
+    '/onboarding/habit-build': {
+      id: '/onboarding/habit-build'
+      path: '/habit-build'
+      fullPath: '/onboarding/habit-build'
+      preLoaderRoute: typeof OnboardingHabitBuildRouteImport
+      parentRoute: typeof OnboardingRouteRoute
+    }
+    '/onboarding/done': {
+      id: '/onboarding/done'
+      path: '/done'
+      fullPath: '/onboarding/done'
+      preLoaderRoute: typeof OnboardingDoneRouteImport
       parentRoute: typeof OnboardingRouteRoute
     }
     '/(auth)/sign-up': {
@@ -191,14 +286,24 @@ declare module '@tanstack/react-router' {
 }
 
 interface OnboardingRouteRouteChildren {
+  OnboardingDoneRoute: typeof OnboardingDoneRoute
+  OnboardingHabitBuildRoute: typeof OnboardingHabitBuildRoute
+  OnboardingHabitTypeRoute: typeof OnboardingHabitTypeRoute
   OnboardingIdentityRoute: typeof OnboardingIdentityRoute
+  OnboardingReminderRoute: typeof OnboardingReminderRoute
   OnboardingStrugglesRoute: typeof OnboardingStrugglesRoute
+  OnboardingTinyRoute: typeof OnboardingTinyRoute
   OnboardingIndexRoute: typeof OnboardingIndexRoute
 }
 
 const OnboardingRouteRouteChildren: OnboardingRouteRouteChildren = {
+  OnboardingDoneRoute: OnboardingDoneRoute,
+  OnboardingHabitBuildRoute: OnboardingHabitBuildRoute,
+  OnboardingHabitTypeRoute: OnboardingHabitTypeRoute,
   OnboardingIdentityRoute: OnboardingIdentityRoute,
+  OnboardingReminderRoute: OnboardingReminderRoute,
   OnboardingStrugglesRoute: OnboardingStrugglesRoute,
+  OnboardingTinyRoute: OnboardingTinyRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
 }
 

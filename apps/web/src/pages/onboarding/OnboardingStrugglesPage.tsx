@@ -1,8 +1,7 @@
-import { useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
 import { CheckRow } from "../../components/ui/CheckRow";
-import { ONBOARDING_STEPS } from "../../constants/onboardingSteps";
+import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
 import {
 	STRUGGLES,
 	type StruggleId,
@@ -11,7 +10,7 @@ import {
 
 export function OnboardingStrugglesPage() {
 	const { t } = useTranslation("onboarding");
-	const navigate = useNavigate();
+	const { goBack, goContinue } = useOnboardingNavigation();
 	const { data, setData } = useOnboardingStore();
 	const { selectedStruggleKeys } = data;
 
@@ -27,8 +26,8 @@ export function OnboardingStrugglesPage() {
 		<OnboardingStepLayout
 			title={t("struggles.title")}
 			subtitle={t("struggles.subtitle")}
-			onBack={() => navigate({ to: ONBOARDING_STEPS[0] })}
-			onContinue={() => navigate({ to: ONBOARDING_STEPS[2] })}
+			onBack={goBack}
+			onContinue={goContinue}
 			isContinueEnabled={selectedStruggleKeys.length > 0}
 		>
 			<div className="flex flex-col gap-2.5">

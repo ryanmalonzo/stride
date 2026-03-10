@@ -1,9 +1,8 @@
-import { useNavigate } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
 import { ToggleCard } from "../../components/ui/ToggleCard";
-import { ONBOARDING_STEPS } from "../../constants/onboardingSteps";
+import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
 import {
 	IDENTITIES,
 	type IdentityId,
@@ -14,7 +13,7 @@ const MAX = 3;
 
 export function OnboardingIdentityPage() {
 	const { t } = useTranslation("onboarding");
-	const navigate = useNavigate();
+	const { goContinue } = useOnboardingNavigation();
 	const { data, setData } = useOnboardingStore();
 	const { selectedIdentityKeys, otherIdentity } = data;
 
@@ -41,7 +40,7 @@ export function OnboardingIdentityPage() {
 		<OnboardingStepLayout
 			title={t("identity.title")}
 			subtitle={t("identity.subtitle")}
-			onContinue={() => navigate({ to: ONBOARDING_STEPS[1] })}
+			onContinue={goContinue}
 			isContinueEnabled={isContinueEnabled}
 		>
 			<div className="grid grid-cols-2 gap-2.5">
