@@ -9,6 +9,9 @@ export const { signIn, signUp, useSession, getSession } = createAuthClient({
 			user: {
 				onboardingCompletedAt: {
 					type: "date",
+					required: false,
+					defaultValue: null,
+					input: false,
 				},
 			},
 		}),
