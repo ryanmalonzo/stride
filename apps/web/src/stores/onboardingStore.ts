@@ -1,5 +1,6 @@
 import type { OnboardingInput } from "@stride/common";
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 import i18n from "../i18n";
 
 export const IDENTITIES = [
@@ -92,8 +93,17 @@ interface OnboardingStore {
 	setData: (partial: Partial<OnboardingData>) => void;
 }
 
-export const useOnboardingStore = create<OnboardingStore>((set) => ({
-	data: defaultData,
-	setData: (partial) =>
-		set((state) => ({ data: { ...state.data, ...partial } })),
-}));
+export const useOnboardingStore = create<OnboardingStore>()(
+	persist(
+		(set) => ({
+			data: defaultData,
+			setData: (partial) =>
+				set((state) => ({ data: { ...state.data, ...partial } })),
+		}),
+		{
+			name: "stride-onboarding-store",
+			storage: createJSONStorage(() => sessionStorage),
+			partialize: (state) => ({ data: state.data }),
+		},
+	),
+);
