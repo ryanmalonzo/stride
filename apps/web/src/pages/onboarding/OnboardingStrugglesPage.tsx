@@ -2,11 +2,16 @@ import { useTranslation } from "react-i18next";
 import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
 import { CheckRow } from "../../components/ui/CheckRow";
 import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
-import {
-	STRUGGLES,
-	type StruggleId,
-	useOnboardingStore,
-} from "../../stores/onboardingStore";
+import type { StruggleId, StruggleOption } from "../../onboarding/types";
+import { useOnboardingStore } from "../../stores/onboardingStore";
+
+const STRUGGLES: readonly StruggleOption[] = [
+	{ id: "consistency", label: "I start habits but don't stick with them" },
+	{ id: "forgetting", label: "I forget to do things I want to do" },
+	{ id: "motivation", label: "I know what to do but don't feel motivated" },
+	{ id: "busy", label: "I'm too tired or busy for new habits" },
+	{ id: "tracking", label: "I lose track of my progress" },
+];
 
 export function OnboardingStrugglesPage() {
 	const { t } = useTranslation("onboarding");

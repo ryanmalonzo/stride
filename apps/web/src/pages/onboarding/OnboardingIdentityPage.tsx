@@ -3,11 +3,16 @@ import { useTranslation } from "react-i18next";
 import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
 import { ToggleCard } from "../../components/ui/ToggleCard";
 import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
-import {
-	IDENTITIES,
-	type IdentityId,
-	useOnboardingStore,
-} from "../../stores/onboardingStore";
+import type { IdentityId, IdentityOption } from "../../onboarding/types";
+import { useOnboardingStore } from "../../stores/onboardingStore";
+
+const IDENTITIES: readonly IdentityOption[] = [
+	{ id: "athlete", icon: "🏃", label: "An athlete" },
+	{ id: "reader", icon: "📚", label: "A reader" },
+	{ id: "artist", icon: "✏️", label: "An artist" },
+	{ id: "finance", icon: "💰", label: "Financially responsible" },
+	{ id: "learner", icon: "🇯🇵", label: "A polyglot" },
+];
 
 const MAX = 3;
 
