@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import type { OnboardingData } from "../../stores/onboardingStore";
+import { Input } from "../Input";
 import { Chip } from "../ui/Chip";
 import { SentenceField } from "../ui/SentenceField";
 
@@ -87,8 +88,8 @@ export function HabitBuildIntentionForm({
 					</div>
 
 					{value.location === "other" && (
-						<input
-							className="mt-2.5 w-full rounded-[10px] border-[1.5px] border-stone-border bg-surface px-3.5 py-2.75 font-sans text-[14px] text-bark placeholder:text-stone-soft transition-[border-color] duration-150 focus:border-bark focus:outline-none"
+						<Input
+							className="mt-2.5 py-2.75 text-[14px]"
 							placeholder={t("habitBuild.intention.otherLocationPlaceholder")}
 							value={value.otherLocation}
 							onChange={(e) => onOtherLocationChange(e.target.value)}
