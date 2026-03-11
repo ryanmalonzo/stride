@@ -4,17 +4,18 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import * as v from "valibot";
-import { signIn } from "../../lib/auth-client";
-import { Button } from "../Button";
-import { InputWithLabel } from "../InputWithLabel";
+import { Button } from "../../../components/Button";
+import { InputWithLabel } from "../../../components/InputWithLabel";
+import { signUp } from "../../../lib/auth-client";
 import { OrDivider } from "./OrDivider";
 
 type FormValues = {
 	email: string;
 	password: string;
+	confirmPassword: string;
 };
 
-export function SignInForm() {
+export function SignUpForm() {
 	const navigate = useNavigate();
 	const { t } = useTranslation("auth");
 	const { t: tForm } = useTranslation("form");
@@ -29,8 +30,18 @@ export function SignInForm() {
 			password: v.pipe(
 				v.string(),
 				v.nonEmpty(tForm("password.errors.required")),
+				v.minLength(8, tForm("password.errors.minLength")),
 			),
+			confirmPassword: v.string(),
 		}),
+		v.forward(
+			v.partialCheck(
+				[["password"], ["confirmPassword"]],
+				(input) => input.password === input.confirmPassword,
+				tForm("confirmPassword.errors.match"),
+			),
+			["confirmPassword"],
+		),
 	);
 
 	const {
@@ -41,9 +52,14 @@ export function SignInForm() {
 		resolver: valibotResolver(schema),
 	});
 
-	async function onSubmit({ email, password }: FormValues) {
-		await signIn.email(
-			{ email, password },
+	async function onSubmit(data: FormValues) {
+		const { email, password } = data;
+		await signUp.email(
+			{
+				email,
+				password,
+				name: email,
+			},
 			{
 				onSuccess: () => {
 					navigate({ to: "/onboarding" });
@@ -70,22 +86,21 @@ export function SignInForm() {
 					label={tForm("password.label")}
 					type="password"
 					placeholder={tForm("password.placeholder")}
-					autoComplete="current-password"
+					autoComplete="new-password"
 					error={errors.password?.message}
 					{...register("password")}
 				/>
-
-				<div className="flex justify-end -mt-2 mb-6">
-					<a
-						href="#!"
-						className="text-[13px] text-stone-muted border-b border-stone-hover no-underline"
-					>
-						{t("signIn.forgotPassword")}
-					</a>
-				</div>
+				<InputWithLabel
+					label={tForm("confirmPassword.label")}
+					type="password"
+					placeholder={tForm("password.placeholder")}
+					autoComplete="new-password"
+					error={errors.confirmPassword?.message}
+					{...register("confirmPassword")}
+				/>
 
 				<Button type="submit" loading={isSubmitting}>
-					{t("signIn.signIn")}
+					{t("signUp.createAccount")}
 				</Button>
 			</form>
 
@@ -93,13 +108,13 @@ export function SignInForm() {
 
 			<div className="flex items-center justify-center gap-1.5">
 				<span className="text-sm text-stone-muted">
-					{t("signIn.dontHaveAnAccount")}
+					{t("signUp.alreadyHaveAnAccount")}
 				</span>
 				<Link
-					to="/sign-up"
+					to="/sign-in"
 					className="text-sm font-semibold text-bark underline underline-offset-[3px]"
 				>
-					{t("signIn.createOne")}
+					{t("signIn.signIn")}
 				</Link>
 			</div>
 		</>

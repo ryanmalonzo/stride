@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { SignInPage } from "../../features/auth";
 import { getSession } from "../../lib/auth-client";
-import { SignInPage } from "../../pages/auth/SignInPage";
 
 export const Route = createFileRoute("/(auth)/sign-in")({
 	beforeLoad: async () => {
