@@ -26,7 +26,9 @@ export function OnboardingHabitBuildPage() {
 
 	const isContinueEnabled =
 		habitType === "intention"
-			? intention.action.trim().length > 0
+			? intention.action.trim().length > 0 &&
+				(intention.time !== "specificTime" ||
+					intention.specificTime.trim().length > 0)
 			: stack.anchor.trim().length > 0 && stack.newHabit.trim().length > 0;
 
 	return (
@@ -45,6 +47,9 @@ export function OnboardingHabitBuildPage() {
 					}
 					onTimeChange={(time) =>
 						setData({ intention: { ...intention, time } })
+					}
+					onSpecificTimeChange={(specificTime) =>
+						setData({ intention: { ...intention, specificTime } })
 					}
 					onLocationChange={(location) =>
 						setData({

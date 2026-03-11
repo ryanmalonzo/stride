@@ -7,6 +7,7 @@ import { useOnboardingStore } from "../../stores/onboardingStore";
 const EMPTY_INTENTION = {
 	action: "",
 	time: "",
+	specificTime: "",
 	location: "",
 	otherLocation: "",
 };

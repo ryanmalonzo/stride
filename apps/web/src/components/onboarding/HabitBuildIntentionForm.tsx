@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { formatTimeForLocale } from "../../lib/formatTimeForLocale";
 import type { OnboardingData } from "../../stores/onboardingStore";
 import { Input } from "../Input";
 import { Chip } from "../ui/Chip";
@@ -8,6 +9,7 @@ type HabitBuildIntentionFormProps = {
 	value: OnboardingData["intention"];
 	onActionChange: (value: string) => void;
 	onTimeChange: (value: string) => void;
+	onSpecificTimeChange: (value: string) => void;
 	onLocationChange: (value: string) => void;
 	onOtherLocationChange: (value: string) => void;
 };
@@ -31,18 +33,31 @@ export function HabitBuildIntentionForm({
 	value,
 	onActionChange,
 	onTimeChange,
+	onSpecificTimeChange,
 	onLocationChange,
 	onOtherLocationChange,
 }: HabitBuildIntentionFormProps) {
-	const { t } = useTranslation("onboarding");
-	const selectedTimeLabel = value.time
-		? t(`habitBuild.intention.timeOptions.${value.time}`)
-		: "";
-	const selectedLocationLabel = value.location
-		? value.location === "other"
-			? value.otherLocation
-			: t(`habitBuild.intention.locationOptions.${value.location}`)
-		: "";
+	const { t, i18n } = useTranslation("onboarding");
+	let timePreviewText = "";
+	if (value.time === "specificTime") {
+		timePreviewText = formatTimeForLocale(
+			value.specificTime,
+			i18n.resolvedLanguage ?? i18n.language,
+		);
+	} else if (value.time) {
+		timePreviewText = t(
+			`habitBuild.intention.timeOptions.${value.time}`,
+		).toLowerCase();
+	}
+
+	let locationPreviewText = "";
+	if (value.location === "other") {
+		locationPreviewText = value.otherLocation.toLowerCase();
+	} else if (value.location) {
+		locationPreviewText = t(
+			`habitBuild.intention.locationOptions.${value.location}`,
+		).toLowerCase();
+	}
 
 	return (
 		<div className="flex flex-col gap-5">
@@ -57,15 +72,28 @@ export function HabitBuildIntentionForm({
 				<span className="min-w-15 pt-1.5 text-[15px] font-semibold text-bark">
 					{t("habitBuild.intention.timeLabel")}
 				</span>
-				<div className="flex flex-wrap gap-2">
-					{TIME_OPTIONS.map((option) => (
-						<Chip
-							key={option}
-							label={t(`habitBuild.intention.timeOptions.${option}`)}
-							selected={value.time === option}
-							onClick={() => onTimeChange(value.time === option ? "" : option)}
+				<div className="flex-1">
+					<div className="flex flex-wrap gap-2">
+						{TIME_OPTIONS.map((option) => (
+							<Chip
+								key={option}
+								label={t(`habitBuild.intention.timeOptions.${option}`)}
+								selected={value.time === option}
+								onClick={() =>
+									onTimeChange(value.time === option ? "" : option)
+								}
+							/>
+						))}
+					</div>
+
+					{value.time === "specificTime" && (
+						<Input
+							className="mt-2.5 w-auto py-2.75 text-[14px]"
+							type="time"
+							value={value.specificTime}
+							onChange={(e) => onSpecificTimeChange(e.target.value)}
 						/>
-					))}
+					)}
 				</div>
 			</div>
 
@@ -105,10 +133,8 @@ export function HabitBuildIntentionForm({
 					</span>
 					<p className="font-serif text-[14px] leading-[1.6] text-bark/80 italic">
 						"I will <strong>{value.action}</strong>
-						{selectedTimeLabel ? ` at ${selectedTimeLabel.toLowerCase()}` : ""}
-						{selectedLocationLabel
-							? ` in ${selectedLocationLabel.toLowerCase()}`
-							: ""}
+						{timePreviewText ? ` at ${timePreviewText}` : ""}
+						{locationPreviewText ? ` in ${locationPreviewText}` : ""}
 						."
 					</p>
 				</div>

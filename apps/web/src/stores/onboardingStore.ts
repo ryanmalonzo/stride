@@ -32,6 +32,7 @@ export type OnboardingData = {
 	intention: {
 		action: string;
 		time: string;
+		specificTime: string;
 		location: string;
 		otherLocation: string;
 	};
@@ -74,7 +75,13 @@ const defaultData: OnboardingData = {
 	otherIdentity: "",
 	selectedStruggleKeys: [],
 	habitType: null,
-	intention: { action: "", time: "", location: "", otherLocation: "" },
+	intention: {
+		action: "",
+		time: "",
+		specificTime: "",
+		location: "",
+		otherLocation: "",
+	},
 	stack: { anchor: "", newHabit: "" },
 	tinyVersion: "",
 	reminder: null,
