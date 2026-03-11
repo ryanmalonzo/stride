@@ -46,5 +46,40 @@
 				"example": "\"After I pour my morning coffee, I will journal.\""
 			}
 		}
+	},
+	"habitBuild": {
+		"intention": {
+			"title": "Define your intention",
+			"subtitle": "The more specific, the more likely it sticks.",
+			"actionLabel": "I will",
+			"actionPlaceholder": "study Japanese for 20 minutes",
+			"timeLabel": "at",
+			"locationLabel": "in",
+			"otherLocationPlaceholder": "e.g., Coffee shop, Library...",
+			"previewLabel": "Your habit",
+			"timeOptions": {
+				"morning": "Morning",
+				"afternoon": "Afternoon",
+				"evening": "Evening",
+				"specificTime": "Specific time..."
+			},
+			"locationOptions": {
+				"home": "Home",
+				"work": "Work",
+				"gym": "Gym",
+				"kitchen": "Kitchen",
+				"outside": "Outside",
+				"other": "Other"
+			}
+		},
+		"stack": {
+			"title": "Build your habit stack",
+			"subtitle": "Chain your new habit to one you already do without thinking.",
+			"anchorLabel": "After I",
+			"anchorPlaceholder": "pour my morning coffee",
+			"newHabitLabel": "I will",
+			"newHabitPlaceholder": "open Duolingo and do 1 lesson",
+			"previewLabel": "Your habit stack"
+		}
 	}
 }

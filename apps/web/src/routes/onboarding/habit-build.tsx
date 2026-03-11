@@ -1,9 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { OnboardingHabitBuildPage } from "../../pages/onboarding/OnboardingHabitBuildPage";
 
 export const Route = createFileRoute("/onboarding/habit-build")({
-	component: RouteComponent,
+	component: OnboardingHabitBuildPage,
 });
-
-function RouteComponent() {
-	return <div>Hello "/onboarding/habit-build"!</div>;
-}
