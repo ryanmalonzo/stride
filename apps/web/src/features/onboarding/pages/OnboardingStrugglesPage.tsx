@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
-import { CheckRow } from "../../components/ui/CheckRow";
-import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
-import type { StruggleId, StruggleOption } from "../../onboarding/types";
-import { useOnboardingStore } from "../../stores/onboardingStore";
+import { CheckRow } from "../../../components/ui/CheckRow";
+import { OnboardingStepLayout } from "../components/OnboardingStepLayout";
+import { useOnboardingNavigation } from "../hooks/useOnboardingNavigation";
+import { useOnboardingStore } from "../store";
+import type { StruggleId, StruggleOption } from "../types";
 
 const STRUGGLES: readonly StruggleOption[] = [
 	{ id: "consistency", label: "I start habits but don't stick with them" },

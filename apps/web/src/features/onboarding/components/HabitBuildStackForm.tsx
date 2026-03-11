@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import type { OnboardingData } from "../../stores/onboardingStore";
-import { SentenceField } from "../ui/SentenceField";
+import { SentenceField } from "../../../components/ui/SentenceField";
+import type { OnboardingData } from "../types";
 
 type HabitBuildStackFormProps = {
 	value: OnboardingData["stack"];

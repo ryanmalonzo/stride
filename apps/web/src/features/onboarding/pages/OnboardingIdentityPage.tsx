@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
-import { ToggleCard } from "../../components/ui/ToggleCard";
-import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
-import type { IdentityId, IdentityOption } from "../../onboarding/types";
-import { useOnboardingStore } from "../../stores/onboardingStore";
+import { ToggleCard } from "../../../components/ui/ToggleCard";
+import { OnboardingStepLayout } from "../components/OnboardingStepLayout";
+import { useOnboardingNavigation } from "../hooks/useOnboardingNavigation";
+import { useOnboardingStore } from "../store";
+import type { IdentityId, IdentityOption } from "../types";
 
 const IDENTITIES: readonly IdentityOption[] = [
 	{ id: "athlete", icon: "🏃", label: "An athlete" },

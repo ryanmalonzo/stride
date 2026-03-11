@@ -1,26 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { IdentityId, StruggleId } from "../onboarding/types";
-
-export type OnboardingData = {
-	selectedIdentityKeys: IdentityId[];
-	otherIdentity: string;
-	selectedStruggleKeys: StruggleId[];
-	habitType: "intention" | "stack" | null;
-	intention: {
-		action: string;
-		time: string;
-		specificTime: string;
-		location: string;
-		otherLocation: string;
-	};
-	stack: {
-		anchor: string;
-		newHabit: string;
-	};
-	tinyVersion: string;
-	reminder: "browser" | "advanced" | null;
-};
+import type { OnboardingData } from "./types";
 
 interface OnboardingStore {
 	data: OnboardingData;
@@ -58,3 +38,5 @@ export const useOnboardingStore = create<OnboardingStore>()(
 		},
 	),
 );
+
+export type { OnboardingData } from "./types";

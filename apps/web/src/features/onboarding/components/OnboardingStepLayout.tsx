@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Button } from "../Button";
+import { Button } from "../../../components/Button";
 
 interface OnboardingStepLayoutProps {
 	title: string;
@@ -24,7 +24,7 @@ export function OnboardingStepLayout({
 	const { t } = useTranslation("misc");
 
 	return (
-		<main className="flex flex-1 items-start justify-center px-6 pt-4 lg:pt-12 pb-20">
+		<main className="flex flex-1 items-start justify-center px-6 pt-4 pb-20 lg:pt-12">
 			<div className="flex w-full max-w-140 flex-col gap-8">
 				<div className="flex flex-col">
 					<h1 className="mb-2.5 font-serif text-[30px] font-semibold leading-[1.2] tracking-[-0.5px]">

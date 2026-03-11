@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { formatTimeForLocale } from "../../lib/formatTimeForLocale";
-import type { OnboardingData } from "../../stores/onboardingStore";
-import { Input } from "../Input";
-import { Chip } from "../ui/Chip";
-import { SentenceField } from "../ui/SentenceField";
+import { Input } from "../../../components/Input";
+import { Chip } from "../../../components/ui/Chip";
+import { SentenceField } from "../../../components/ui/SentenceField";
+import { formatTimeForLocale } from "../../../lib/formatTimeForLocale";
+import type { OnboardingData } from "../types";
 
 type HabitBuildIntentionFormProps = {
 	value: OnboardingData["intention"];
@@ -20,6 +20,7 @@ const TIME_OPTIONS = [
 	"evening",
 	"specificTime",
 ] as const;
+
 const LOCATION_OPTIONS = [
 	"home",
 	"work",

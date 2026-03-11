@@ -8,11 +8,11 @@ import {
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navbar } from "../../components/Navbar";
-import { OnboardingProgressBar } from "../../components/onboarding/OnboardingProgress";
 import {
 	ONBOARDING_STEPS,
+	OnboardingProgressBar,
 	type OnboardingStep,
-} from "../../constants/onboardingSteps";
+} from "../../features/onboarding";
 import { getSession } from "../../lib/auth-client";
 
 export const Route = createFileRoute("/onboarding")({

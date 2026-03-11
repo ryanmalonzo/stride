@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
-import { CueCard } from "../../components/ui/CueCard";
-import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
-import { useOnboardingStore } from "../../stores/onboardingStore";
+import { CueCard } from "../../../components/ui/CueCard";
+import { OnboardingStepLayout } from "../components/OnboardingStepLayout";
+import { useOnboardingNavigation } from "../hooks/useOnboardingNavigation";
+import { useOnboardingStore } from "../store";
 
 const EMPTY_INTENTION = {
 	action: "",

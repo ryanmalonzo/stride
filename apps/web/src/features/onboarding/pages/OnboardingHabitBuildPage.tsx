@@ -1,11 +1,11 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { HabitBuildIntentionForm } from "../../components/onboarding/HabitBuildIntentionForm";
-import { HabitBuildStackForm } from "../../components/onboarding/HabitBuildStackForm";
-import { OnboardingStepLayout } from "../../components/onboarding/OnboardingStepLayout";
-import { useOnboardingNavigation } from "../../hooks/useOnboardingNavigation";
-import { useOnboardingStore } from "../../stores/onboardingStore";
+import { HabitBuildIntentionForm } from "../components/HabitBuildIntentionForm";
+import { HabitBuildStackForm } from "../components/HabitBuildStackForm";
+import { OnboardingStepLayout } from "../components/OnboardingStepLayout";
+import { useOnboardingNavigation } from "../hooks/useOnboardingNavigation";
+import { useOnboardingStore } from "../store";
 
 export function OnboardingHabitBuildPage() {
 	const navigate = useNavigate();

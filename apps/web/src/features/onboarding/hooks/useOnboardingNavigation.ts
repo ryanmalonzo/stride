@@ -1,8 +1,5 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
-import {
-	ONBOARDING_STEPS,
-	type OnboardingStep,
-} from "../constants/onboardingSteps";
+import { ONBOARDING_STEPS, type OnboardingStep } from "../constants";
 
 export function useOnboardingNavigation() {
 	const { pathname } = useLocation();
