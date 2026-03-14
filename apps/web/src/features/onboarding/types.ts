@@ -32,7 +32,7 @@ export type OnboardingData = {
 	intention: {
 		action: string;
 		time: string;
-		specificTime: string;
+		otherTime: string;
 		location: string;
 		otherLocation: string;
 	};

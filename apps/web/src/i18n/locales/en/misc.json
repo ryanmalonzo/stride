@@ -1,5 +1,6 @@
 {
 	"or": "or",
+	"other": "Other",
 	"continue": "Continue",
 	"back": "Back",
 	"genericError": "Something went wrong. Please try again."

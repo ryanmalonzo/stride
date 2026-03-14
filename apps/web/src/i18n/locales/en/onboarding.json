@@ -5,7 +5,6 @@
 	"identity": {
 		"title": "Who do you want to become?",
 		"subtitle": "Choose up to 3 that resonate. These become your north star.",
-		"other": "Other",
 		"otherPlaceholder": "e.g., A better parent, A minimalist…",
 		"hintComplete": "That's your three ✦",
 		"hintRemaining": "{{count}} more to go, or continue as is",
@@ -57,19 +56,12 @@
 			"locationLabel": "in",
 			"otherLocationPlaceholder": "e.g., Coffee shop, Library...",
 			"previewLabel": "Your habit",
-			"timeOptions": {
-				"morning": "Morning",
-				"afternoon": "Afternoon",
-				"evening": "Evening",
-				"specificTime": "Specific time..."
-			},
 			"locationOptions": {
 				"home": "Home",
 				"work": "Work",
 				"gym": "Gym",
 				"kitchen": "Kitchen",
-				"outside": "Outside",
-				"other": "Other"
+				"outside": "Outside"
 			}
 		},
 		"stack": {

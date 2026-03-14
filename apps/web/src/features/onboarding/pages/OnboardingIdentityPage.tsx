@@ -18,6 +18,7 @@ const MAX = 3;
 
 export function OnboardingIdentityPage() {
 	const { t } = useTranslation("onboarding");
+	const { t: tMisc } = useTranslation("misc");
 	const { goContinue } = useOnboardingNavigation();
 	const { data, setData } = useOnboardingStore();
 	const { selectedIdentityKeys, otherIdentity } = data;
@@ -60,7 +61,7 @@ export function OnboardingIdentityPage() {
 				))}
 				<ToggleCard
 					icon="✨"
-					label={t("identity.other")}
+					label={tMisc("other")}
 					selected={selectedIdentityKeys.includes("other")}
 					onClick={() => toggle("other")}
 				/>

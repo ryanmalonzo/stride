@@ -59,8 +59,8 @@ export function OnboardingReminderPage() {
 							name: intention.action,
 							tinyVersion,
 							time:
-								intention.time === "specificTime"
-									? intention.specificTime
+								intention.time === "other"
+									? intention.otherTime
 									: intention.time,
 							location:
 								intention.location === "other"

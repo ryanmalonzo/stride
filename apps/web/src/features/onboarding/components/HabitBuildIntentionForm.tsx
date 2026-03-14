@@ -9,17 +9,12 @@ type HabitBuildIntentionFormProps = {
 	value: OnboardingData["intention"];
 	onActionChange: (value: string) => void;
 	onTimeChange: (value: string) => void;
-	onSpecificTimeChange: (value: string) => void;
+	onOtherTimeChange: (value: string) => void;
 	onLocationChange: (value: string) => void;
 	onOtherLocationChange: (value: string) => void;
 };
 
-const TIME_OPTIONS = [
-	"morning",
-	"afternoon",
-	"evening",
-	"specificTime",
-] as const;
+const TIME_OPTIONS = ["08:00", "13:00", "19:00", "other"] as const;
 
 const LOCATION_OPTIONS = [
 	"home",
@@ -34,21 +29,23 @@ export function HabitBuildIntentionForm({
 	value,
 	onActionChange,
 	onTimeChange,
-	onSpecificTimeChange,
+	onOtherTimeChange,
 	onLocationChange,
 	onOtherLocationChange,
 }: HabitBuildIntentionFormProps) {
 	const { t, i18n } = useTranslation("onboarding");
+	const { t: tMisc } = useTranslation("misc");
 	let timePreviewText = "";
-	if (value.time === "specificTime") {
+	if (value.time === "other") {
 		timePreviewText = formatTimeForLocale(
-			value.specificTime,
+			value.otherTime,
 			i18n.resolvedLanguage ?? i18n.language,
 		);
 	} else if (value.time) {
-		timePreviewText = t(
-			`habitBuild.intention.timeOptions.${value.time}`,
-		).toLowerCase();
+		timePreviewText = formatTimeForLocale(
+			value.time,
+			i18n.resolvedLanguage ?? i18n.language,
+		);
 	}
 
 	let locationPreviewText = "";
@@ -78,7 +75,14 @@ export function HabitBuildIntentionForm({
 						{TIME_OPTIONS.map((option) => (
 							<Chip
 								key={option}
-								label={t(`habitBuild.intention.timeOptions.${option}`)}
+								label={
+									option === "other"
+										? tMisc("other")
+										: formatTimeForLocale(
+												option,
+												i18n.resolvedLanguage ?? i18n.language,
+											)
+								}
 								selected={value.time === option}
 								onClick={() =>
 									onTimeChange(value.time === option ? "" : option)
@@ -87,12 +91,12 @@ export function HabitBuildIntentionForm({
 						))}
 					</div>
 
-					{value.time === "specificTime" && (
+					{value.time === "other" && (
 						<Input
 							className="mt-2.5 w-auto py-2.75 text-[14px]"
 							type="time"
-							value={value.specificTime}
-							onChange={(e) => onSpecificTimeChange(e.target.value)}
+							value={value.otherTime}
+							onChange={(e) => onOtherTimeChange(e.target.value)}
 						/>
 					)}
 				</div>
@@ -107,7 +111,11 @@ export function HabitBuildIntentionForm({
 						{LOCATION_OPTIONS.map((option) => (
 							<Chip
 								key={option}
-								label={t(`habitBuild.intention.locationOptions.${option}`)}
+								label={
+									option === "other"
+										? tMisc("other")
+										: t(`habitBuild.intention.locationOptions.${option}`)
+								}
 								selected={value.location === option}
 								onClick={() =>
 									onLocationChange(value.location === option ? "" : option)

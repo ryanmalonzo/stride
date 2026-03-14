@@ -18,7 +18,7 @@ const defaultOnboardingData: OnboardingData = {
 	intention: {
 		action: "",
 		time: "",
-		specificTime: "",
+		otherTime: "",
 		location: "",
 		otherLocation: "",
 	},

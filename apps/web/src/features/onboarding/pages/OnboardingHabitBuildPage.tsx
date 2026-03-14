@@ -19,8 +19,7 @@ export function OnboardingHabitBuildPage() {
 		habitType === "intention"
 			? intention.action.trim().length > 0 &&
 				intention.time.length > 0 &&
-				(intention.time !== "specificTime" ||
-					intention.specificTime.trim().length > 0) &&
+				(intention.time !== "other" || intention.otherTime.trim().length > 0) &&
 				intention.location.length > 0 &&
 				(intention.location !== "other" ||
 					intention.otherLocation.trim().length > 0)
@@ -43,8 +42,8 @@ export function OnboardingHabitBuildPage() {
 					onTimeChange={(time) =>
 						setData({ intention: { ...intention, time } })
 					}
-					onSpecificTimeChange={(specificTime) =>
-						setData({ intention: { ...intention, specificTime } })
+					onOtherTimeChange={(otherTime) =>
+						setData({ intention: { ...intention, otherTime } })
 					}
 					onLocationChange={(location) =>
 						setData({
