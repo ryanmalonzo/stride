@@ -9,9 +9,12 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navbar } from "../../../components/Navbar";
 import {
+	getOnboardingStepIndex,
+	isOnboardingStep,
+	isOnboardingStepUnlocked,
 	ONBOARDING_STEPS,
 	OnboardingProgressBar,
-	type OnboardingStep,
+	useOnboardingStore,
 } from "../../../features/onboarding";
 
 export const Route = createFileRoute("/_authenticated/onboarding")({
@@ -23,24 +26,26 @@ export const Route = createFileRoute("/_authenticated/onboarding")({
 	component: OnboardingLayout,
 });
 
-function isOnboardingStep(path: string): path is OnboardingStep {
-	return (ONBOARDING_STEPS as readonly string[]).includes(path);
-}
-
 function OnboardingLayout() {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const { t } = useTranslation("onboarding");
+	const unlockedStep = useOnboardingStore((state) => state.unlockedStep);
 
 	useEffect(() => {
 		if (!isOnboardingStep(pathname)) {
-			navigate({ to: ONBOARDING_STEPS[0] });
+			navigate({ to: unlockedStep, replace: true });
+			return;
 		}
-	}, [pathname, navigate]);
+
+		if (!isOnboardingStepUnlocked(pathname, unlockedStep)) {
+			navigate({ to: unlockedStep, replace: true });
+		}
+	}, [navigate, pathname, unlockedStep]);
 
 	const stepIndex = isOnboardingStep(pathname)
-		? ONBOARDING_STEPS.indexOf(pathname)
-		: 0;
+		? getOnboardingStepIndex(pathname)
+		: getOnboardingStepIndex(unlockedStep);
 	const totalSteps = ONBOARDING_STEPS.length - 1;
 	const currentStep = stepIndex + 1;
 

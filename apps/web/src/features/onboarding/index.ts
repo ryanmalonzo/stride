@@ -5,7 +5,14 @@ export {
 	OnboardingStepLayout,
 } from "./components";
 export type { OnboardingStep } from "./constants";
-export { ONBOARDING_STEPS } from "./constants";
+export {
+	getNextOnboardingStep,
+	getOnboardingStepIndex,
+	getPreviousOnboardingStep,
+	isOnboardingStep,
+	isOnboardingStepUnlocked,
+	ONBOARDING_STEPS,
+} from "./constants";
 export { useOnboardingNavigation } from "./hooks/useOnboardingNavigation";
 export {
 	OnboardingDonePage,

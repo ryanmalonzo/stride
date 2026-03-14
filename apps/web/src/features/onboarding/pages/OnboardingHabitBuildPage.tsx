@@ -1,5 +1,3 @@
-import { useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { HabitBuildIntentionForm } from "../components/HabitBuildIntentionForm";
 import { HabitBuildStackForm } from "../components/HabitBuildStackForm";
@@ -8,17 +6,10 @@ import { useOnboardingNavigation } from "../hooks/useOnboardingNavigation";
 import { useOnboardingStore } from "../store";
 
 export function OnboardingHabitBuildPage() {
-	const navigate = useNavigate();
 	const { t } = useTranslation("onboarding");
 	const { goBack, goContinue } = useOnboardingNavigation();
 	const { data, setData } = useOnboardingStore();
 	const { habitType, intention, stack } = data;
-
-	useEffect(() => {
-		if (habitType === null) {
-			navigate({ to: "/onboarding/habit-type" });
-		}
-	}, [habitType, navigate]);
 
 	if (habitType === null) {
 		return null;

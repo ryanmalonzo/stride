@@ -1,20 +1,29 @@
 import { useLocation, useNavigate } from "@tanstack/react-router";
-import { ONBOARDING_STEPS, type OnboardingStep } from "../constants";
+import {
+	getNextOnboardingStep,
+	getPreviousOnboardingStep,
+	isOnboardingStep,
+} from "../constants";
+import { useOnboardingStore } from "../store";
 
 export function useOnboardingNavigation() {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
+	const setUnlockedStep = useOnboardingStore((state) => state.setUnlockedStep);
 
-	const currentIndex = ONBOARDING_STEPS.indexOf(pathname as OnboardingStep);
-	const previousStep =
-		currentIndex > 0 ? ONBOARDING_STEPS[currentIndex - 1] : undefined;
-	const nextStep =
-		currentIndex < ONBOARDING_STEPS.length - 1
-			? ONBOARDING_STEPS[currentIndex + 1]
-			: undefined;
+	const currentStep = isOnboardingStep(pathname) ? pathname : undefined;
+	const previousStep = currentStep
+		? getPreviousOnboardingStep(currentStep)
+		: undefined;
+	const nextStep = currentStep ? getNextOnboardingStep(currentStep) : undefined;
 
 	return {
 		goBack: previousStep ? () => navigate({ to: previousStep }) : undefined,
-		goContinue: nextStep ? () => navigate({ to: nextStep }) : undefined,
+		goContinue: nextStep
+			? () => {
+					setUnlockedStep(nextStep);
+					navigate({ to: nextStep });
+				}
+			: undefined,
 	};
 }

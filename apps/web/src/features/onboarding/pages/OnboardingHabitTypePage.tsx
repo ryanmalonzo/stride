@@ -20,7 +20,7 @@ const EMPTY_STACK = {
 export function OnboardingHabitTypePage() {
 	const { t } = useTranslation("onboarding");
 	const { goBack, goContinue } = useOnboardingNavigation();
-	const { data, setData } = useOnboardingStore();
+	const { data, setData, setUnlockedStep } = useOnboardingStore();
 	const { habitType } = data;
 
 	function selectHabitType(nextHabitType: "intention" | "stack") {
@@ -29,7 +29,10 @@ export function OnboardingHabitTypePage() {
 				habitType: nextHabitType,
 				intention: EMPTY_INTENTION,
 				stack: EMPTY_STACK,
+				tinyVersion: "",
+				reminder: null,
 			});
+			setUnlockedStep("/onboarding/habit-build");
 			return;
 		}
 
