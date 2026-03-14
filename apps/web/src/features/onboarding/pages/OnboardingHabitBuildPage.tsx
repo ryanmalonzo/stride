@@ -15,12 +15,12 @@ export function OnboardingHabitBuildPage() {
 	const { habitType, intention, stack } = data;
 
 	useEffect(() => {
-		if (habitType == null) {
+		if (habitType === null) {
 			navigate({ to: "/onboarding/habit-type" });
 		}
 	}, [habitType, navigate]);
 
-	if (habitType == null) {
+	if (habitType === null) {
 		return null;
 	}
 
