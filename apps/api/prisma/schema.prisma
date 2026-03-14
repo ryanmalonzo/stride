@@ -27,6 +27,7 @@ model User {
   onboardingCompletedAt DateTime?
   identities            Identity[]
   struggles             Struggle[]
+  habits                Habit[]
 
   @@unique([email])
   @@map("user")
@@ -98,6 +99,28 @@ model Struggle {
   label     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum HabitType {
+  IMPLEMENTATION_INTENTION
+  HABIT_STACK
+}
+
+model Habit {
+  id          String    @id @default(nanoid())
+  userId      String
+  type        HabitType
+  name        String // the main action ("study Japanese for 20 minutes")
+  tinyVersion String // 2-minute rule version
+  time        String? // "morning" | "afternoon" | "evening" | specific time (intention only)
+  location    String? // intention only
+  anchor      String? // "after I pour my morning coffee" (stack only)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
