@@ -1,3 +1,5 @@
+import { SelectableCard } from "./SelectableCard";
+
 interface ToggleCardProps {
 	icon: string;
 	label: string;
@@ -12,10 +14,10 @@ export function ToggleCard({
 	onClick,
 }: ToggleCardProps) {
 	return (
-		<button
-			type="button"
+		<SelectableCard
+			selected={selected}
 			onClick={onClick}
-			className={`relative flex w-full cursor-pointer items-center gap-3 rounded-[12px] border-[1.5px] bg-surface px-4 py-3.5 text-left transition-all duration-150 ${selected ? "border-bark bg-bark/3" : "border-stone-border"}`}
+			className="relative items-center gap-3 rounded-[12px] px-4 py-3.5"
 		>
 			<span className="text-[20px]">{icon}</span>
 			<span className="flex-1 text-[14px] font-medium text-bark">{label}</span>
@@ -24,6 +26,6 @@ export function ToggleCard({
 					✓
 				</span>
 			)}
-		</button>
+		</SelectableCard>
 	);
 }
