@@ -82,6 +82,21 @@
 			"previewLabel": "Your habit stack"
 		}
 	},
+	"reminder": {
+		"title": "Set a reminder",
+		"subtitle": "Optional, but a well-timed nudge can be the difference between remembering and forgetting.",
+		"selected": "Selected",
+		"options": {
+			"browser": {
+				"title": "Browser notifications",
+				"description": "Get a notification in your browser at a time you choose. Works immediately, no setup needed."
+			},
+			"advanced": {
+				"title": "Self-hosted / advanced",
+				"description": "ntfy, Pushover, Gotify, webhooks and more. Configure later in Settings."
+			}
+		}
+	},
 	"tiny": {
 		"title": "Make it tiny",
 		"subtitle": "What's the smallest possible version? If you only had 2 minutes, what would you do?",
