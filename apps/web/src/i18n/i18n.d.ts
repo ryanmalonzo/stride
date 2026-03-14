@@ -1,7 +1,7 @@
 import type auth from "./locales/en/auth.json";
 import type form from "./locales/en/form.json";
 import type misc from "./locales/en/misc.json";
-import type onboarding from "./locles/en/onboarding.json";
+import type onboarding from "./locales/en/onboarding.json";
 
 declare module "i18next" {
 	interface CustomTypeOptions {
