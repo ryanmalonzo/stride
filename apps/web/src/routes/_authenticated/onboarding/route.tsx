@@ -7,18 +7,16 @@ import {
 } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Navbar } from "../../components/Navbar";
+import { Navbar } from "../../../components/Navbar";
 import {
 	ONBOARDING_STEPS,
 	OnboardingProgressBar,
 	type OnboardingStep,
-} from "../../features/onboarding";
-import { getSession } from "../../lib/auth-client";
+} from "../../../features/onboarding";
 
-export const Route = createFileRoute("/onboarding")({
-	beforeLoad: async () => {
-		const { data: session } = await getSession();
-		if (session?.user.onboardingCompletedAt) {
+export const Route = createFileRoute("/_authenticated/onboarding")({
+	beforeLoad: ({ context }) => {
+		if (context.session?.user.onboardingCompletedAt) {
 			throw redirect({ to: "/dashboard" });
 		}
 	},

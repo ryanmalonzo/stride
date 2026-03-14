@@ -9,28 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as OnboardingRouteRouteImport } from './routes/onboarding/route'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as OnboardingIndexRouteImport } from './routes/onboarding/index'
-import { Route as OnboardingTinyRouteImport } from './routes/onboarding/tiny'
-import { Route as OnboardingStrugglesRouteImport } from './routes/onboarding/struggles'
-import { Route as OnboardingReminderRouteImport } from './routes/onboarding/reminder'
-import { Route as OnboardingIdentityRouteImport } from './routes/onboarding/identity'
-import { Route as OnboardingHabitTypeRouteImport } from './routes/onboarding/habit-type'
-import { Route as OnboardingHabitBuildRouteImport } from './routes/onboarding/habit-build'
-import { Route as OnboardingDoneRouteImport } from './routes/onboarding/done'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as authSignUpRouteImport } from './routes/(auth)/sign-up'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
+import { Route as AuthenticatedOnboardingRouteRouteImport } from './routes/_authenticated/onboarding/route'
+import { Route as AuthenticatedOnboardingIndexRouteImport } from './routes/_authenticated/onboarding/index'
+import { Route as AuthenticatedOnboardingTinyRouteImport } from './routes/_authenticated/onboarding/tiny'
+import { Route as AuthenticatedOnboardingStrugglesRouteImport } from './routes/_authenticated/onboarding/struggles'
+import { Route as AuthenticatedOnboardingReminderRouteImport } from './routes/_authenticated/onboarding/reminder'
+import { Route as AuthenticatedOnboardingIdentityRouteImport } from './routes/_authenticated/onboarding/identity'
+import { Route as AuthenticatedOnboardingHabitTypeRouteImport } from './routes/_authenticated/onboarding/habit-type'
+import { Route as AuthenticatedOnboardingHabitBuildRouteImport } from './routes/_authenticated/onboarding/habit-build'
+import { Route as AuthenticatedOnboardingDoneRouteImport } from './routes/_authenticated/onboarding/done'
 
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardingRouteRoute = OnboardingRouteRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -38,45 +33,10 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OnboardingIndexRoute = OnboardingIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingTinyRoute = OnboardingTinyRouteImport.update({
-  id: '/tiny',
-  path: '/tiny',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingStrugglesRoute = OnboardingStrugglesRouteImport.update({
-  id: '/struggles',
-  path: '/struggles',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingReminderRoute = OnboardingReminderRouteImport.update({
-  id: '/reminder',
-  path: '/reminder',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingIdentityRoute = OnboardingIdentityRouteImport.update({
-  id: '/identity',
-  path: '/identity',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingHabitTypeRoute = OnboardingHabitTypeRouteImport.update({
-  id: '/habit-type',
-  path: '/habit-type',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingHabitBuildRoute = OnboardingHabitBuildRouteImport.update({
-  id: '/habit-build',
-  path: '/habit-build',
-  getParentRoute: () => OnboardingRouteRoute,
-} as any)
-const OnboardingDoneRoute = OnboardingDoneRouteImport.update({
-  id: '/done',
-  path: '/done',
-  getParentRoute: () => OnboardingRouteRoute,
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const authSignUpRoute = authSignUpRouteImport.update({
   id: '/(auth)/sign-up',
@@ -88,60 +48,115 @@ const authSignInRoute = authSignInRouteImport.update({
   path: '/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedOnboardingRouteRoute =
+  AuthenticatedOnboardingRouteRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedOnboardingIndexRoute =
+  AuthenticatedOnboardingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingTinyRoute =
+  AuthenticatedOnboardingTinyRouteImport.update({
+    id: '/tiny',
+    path: '/tiny',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingStrugglesRoute =
+  AuthenticatedOnboardingStrugglesRouteImport.update({
+    id: '/struggles',
+    path: '/struggles',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingReminderRoute =
+  AuthenticatedOnboardingReminderRouteImport.update({
+    id: '/reminder',
+    path: '/reminder',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingIdentityRoute =
+  AuthenticatedOnboardingIdentityRouteImport.update({
+    id: '/identity',
+    path: '/identity',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingHabitTypeRoute =
+  AuthenticatedOnboardingHabitTypeRouteImport.update({
+    id: '/habit-type',
+    path: '/habit-type',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingHabitBuildRoute =
+  AuthenticatedOnboardingHabitBuildRouteImport.update({
+    id: '/habit-build',
+    path: '/habit-build',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
+const AuthenticatedOnboardingDoneRoute =
+  AuthenticatedOnboardingDoneRouteImport.update({
+    id: '/done',
+    path: '/done',
+    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/onboarding': typeof OnboardingRouteRouteWithChildren
-  '/dashboard': typeof DashboardRoute
+  '/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
-  '/onboarding/done': typeof OnboardingDoneRoute
-  '/onboarding/habit-build': typeof OnboardingHabitBuildRoute
-  '/onboarding/habit-type': typeof OnboardingHabitTypeRoute
-  '/onboarding/identity': typeof OnboardingIdentityRoute
-  '/onboarding/reminder': typeof OnboardingReminderRoute
-  '/onboarding/struggles': typeof OnboardingStrugglesRoute
-  '/onboarding/tiny': typeof OnboardingTinyRoute
-  '/onboarding/': typeof OnboardingIndexRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/onboarding/done': typeof AuthenticatedOnboardingDoneRoute
+  '/onboarding/habit-build': typeof AuthenticatedOnboardingHabitBuildRoute
+  '/onboarding/habit-type': typeof AuthenticatedOnboardingHabitTypeRoute
+  '/onboarding/identity': typeof AuthenticatedOnboardingIdentityRoute
+  '/onboarding/reminder': typeof AuthenticatedOnboardingReminderRoute
+  '/onboarding/struggles': typeof AuthenticatedOnboardingStrugglesRoute
+  '/onboarding/tiny': typeof AuthenticatedOnboardingTinyRoute
+  '/onboarding/': typeof AuthenticatedOnboardingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
-  '/onboarding/done': typeof OnboardingDoneRoute
-  '/onboarding/habit-build': typeof OnboardingHabitBuildRoute
-  '/onboarding/habit-type': typeof OnboardingHabitTypeRoute
-  '/onboarding/identity': typeof OnboardingIdentityRoute
-  '/onboarding/reminder': typeof OnboardingReminderRoute
-  '/onboarding/struggles': typeof OnboardingStrugglesRoute
-  '/onboarding/tiny': typeof OnboardingTinyRoute
-  '/onboarding': typeof OnboardingIndexRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/onboarding/done': typeof AuthenticatedOnboardingDoneRoute
+  '/onboarding/habit-build': typeof AuthenticatedOnboardingHabitBuildRoute
+  '/onboarding/habit-type': typeof AuthenticatedOnboardingHabitTypeRoute
+  '/onboarding/identity': typeof AuthenticatedOnboardingIdentityRoute
+  '/onboarding/reminder': typeof AuthenticatedOnboardingReminderRoute
+  '/onboarding/struggles': typeof AuthenticatedOnboardingStrugglesRoute
+  '/onboarding/tiny': typeof AuthenticatedOnboardingTinyRoute
+  '/onboarding': typeof AuthenticatedOnboardingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/onboarding': typeof OnboardingRouteRouteWithChildren
-  '/dashboard': typeof DashboardRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_authenticated/onboarding': typeof AuthenticatedOnboardingRouteRouteWithChildren
   '/(auth)/sign-in': typeof authSignInRoute
   '/(auth)/sign-up': typeof authSignUpRoute
-  '/onboarding/done': typeof OnboardingDoneRoute
-  '/onboarding/habit-build': typeof OnboardingHabitBuildRoute
-  '/onboarding/habit-type': typeof OnboardingHabitTypeRoute
-  '/onboarding/identity': typeof OnboardingIdentityRoute
-  '/onboarding/reminder': typeof OnboardingReminderRoute
-  '/onboarding/struggles': typeof OnboardingStrugglesRoute
-  '/onboarding/tiny': typeof OnboardingTinyRoute
-  '/onboarding/': typeof OnboardingIndexRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/onboarding/done': typeof AuthenticatedOnboardingDoneRoute
+  '/_authenticated/onboarding/habit-build': typeof AuthenticatedOnboardingHabitBuildRoute
+  '/_authenticated/onboarding/habit-type': typeof AuthenticatedOnboardingHabitTypeRoute
+  '/_authenticated/onboarding/identity': typeof AuthenticatedOnboardingIdentityRoute
+  '/_authenticated/onboarding/reminder': typeof AuthenticatedOnboardingReminderRoute
+  '/_authenticated/onboarding/struggles': typeof AuthenticatedOnboardingStrugglesRoute
+  '/_authenticated/onboarding/tiny': typeof AuthenticatedOnboardingTinyRoute
+  '/_authenticated/onboarding/': typeof AuthenticatedOnboardingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/onboarding'
-    | '/dashboard'
     | '/sign-in'
     | '/sign-up'
+    | '/dashboard'
     | '/onboarding/done'
     | '/onboarding/habit-build'
     | '/onboarding/habit-type'
@@ -153,9 +168,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
     | '/sign-in'
     | '/sign-up'
+    | '/dashboard'
     | '/onboarding/done'
     | '/onboarding/habit-build'
     | '/onboarding/habit-type'
@@ -167,42 +182,35 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/onboarding'
-    | '/dashboard'
+    | '/_authenticated'
+    | '/_authenticated/onboarding'
     | '/(auth)/sign-in'
     | '/(auth)/sign-up'
-    | '/onboarding/done'
-    | '/onboarding/habit-build'
-    | '/onboarding/habit-type'
-    | '/onboarding/identity'
-    | '/onboarding/reminder'
-    | '/onboarding/struggles'
-    | '/onboarding/tiny'
-    | '/onboarding/'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/onboarding/done'
+    | '/_authenticated/onboarding/habit-build'
+    | '/_authenticated/onboarding/habit-type'
+    | '/_authenticated/onboarding/identity'
+    | '/_authenticated/onboarding/reminder'
+    | '/_authenticated/onboarding/struggles'
+    | '/_authenticated/onboarding/tiny'
+    | '/_authenticated/onboarding/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  OnboardingRouteRoute: typeof OnboardingRouteRouteWithChildren
-  DashboardRoute: typeof DashboardRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   authSignInRoute: typeof authSignInRoute
   authSignUpRoute: typeof authSignUpRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -212,61 +220,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/onboarding/': {
-      id: '/onboarding/'
-      path: '/'
-      fullPath: '/onboarding/'
-      preLoaderRoute: typeof OnboardingIndexRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/tiny': {
-      id: '/onboarding/tiny'
-      path: '/tiny'
-      fullPath: '/onboarding/tiny'
-      preLoaderRoute: typeof OnboardingTinyRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/struggles': {
-      id: '/onboarding/struggles'
-      path: '/struggles'
-      fullPath: '/onboarding/struggles'
-      preLoaderRoute: typeof OnboardingStrugglesRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/reminder': {
-      id: '/onboarding/reminder'
-      path: '/reminder'
-      fullPath: '/onboarding/reminder'
-      preLoaderRoute: typeof OnboardingReminderRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/identity': {
-      id: '/onboarding/identity'
-      path: '/identity'
-      fullPath: '/onboarding/identity'
-      preLoaderRoute: typeof OnboardingIdentityRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/habit-type': {
-      id: '/onboarding/habit-type'
-      path: '/habit-type'
-      fullPath: '/onboarding/habit-type'
-      preLoaderRoute: typeof OnboardingHabitTypeRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/habit-build': {
-      id: '/onboarding/habit-build'
-      path: '/habit-build'
-      fullPath: '/onboarding/habit-build'
-      preLoaderRoute: typeof OnboardingHabitBuildRouteImport
-      parentRoute: typeof OnboardingRouteRoute
-    }
-    '/onboarding/done': {
-      id: '/onboarding/done'
-      path: '/done'
-      fullPath: '/onboarding/done'
-      preLoaderRoute: typeof OnboardingDoneRouteImport
-      parentRoute: typeof OnboardingRouteRoute
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/(auth)/sign-up': {
       id: '/(auth)/sign-up'
@@ -282,39 +241,121 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authSignInRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/onboarding': {
+      id: '/_authenticated/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthenticatedOnboardingRouteRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/onboarding/': {
+      id: '/_authenticated/onboarding/'
+      path: '/'
+      fullPath: '/onboarding/'
+      preLoaderRoute: typeof AuthenticatedOnboardingIndexRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/tiny': {
+      id: '/_authenticated/onboarding/tiny'
+      path: '/tiny'
+      fullPath: '/onboarding/tiny'
+      preLoaderRoute: typeof AuthenticatedOnboardingTinyRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/struggles': {
+      id: '/_authenticated/onboarding/struggles'
+      path: '/struggles'
+      fullPath: '/onboarding/struggles'
+      preLoaderRoute: typeof AuthenticatedOnboardingStrugglesRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/reminder': {
+      id: '/_authenticated/onboarding/reminder'
+      path: '/reminder'
+      fullPath: '/onboarding/reminder'
+      preLoaderRoute: typeof AuthenticatedOnboardingReminderRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/identity': {
+      id: '/_authenticated/onboarding/identity'
+      path: '/identity'
+      fullPath: '/onboarding/identity'
+      preLoaderRoute: typeof AuthenticatedOnboardingIdentityRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/habit-type': {
+      id: '/_authenticated/onboarding/habit-type'
+      path: '/habit-type'
+      fullPath: '/onboarding/habit-type'
+      preLoaderRoute: typeof AuthenticatedOnboardingHabitTypeRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/habit-build': {
+      id: '/_authenticated/onboarding/habit-build'
+      path: '/habit-build'
+      fullPath: '/onboarding/habit-build'
+      preLoaderRoute: typeof AuthenticatedOnboardingHabitBuildRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
+    '/_authenticated/onboarding/done': {
+      id: '/_authenticated/onboarding/done'
+      path: '/done'
+      fullPath: '/onboarding/done'
+      preLoaderRoute: typeof AuthenticatedOnboardingDoneRouteImport
+      parentRoute: typeof AuthenticatedOnboardingRouteRoute
+    }
   }
 }
 
-interface OnboardingRouteRouteChildren {
-  OnboardingDoneRoute: typeof OnboardingDoneRoute
-  OnboardingHabitBuildRoute: typeof OnboardingHabitBuildRoute
-  OnboardingHabitTypeRoute: typeof OnboardingHabitTypeRoute
-  OnboardingIdentityRoute: typeof OnboardingIdentityRoute
-  OnboardingReminderRoute: typeof OnboardingReminderRoute
-  OnboardingStrugglesRoute: typeof OnboardingStrugglesRoute
-  OnboardingTinyRoute: typeof OnboardingTinyRoute
-  OnboardingIndexRoute: typeof OnboardingIndexRoute
+interface AuthenticatedOnboardingRouteRouteChildren {
+  AuthenticatedOnboardingDoneRoute: typeof AuthenticatedOnboardingDoneRoute
+  AuthenticatedOnboardingHabitBuildRoute: typeof AuthenticatedOnboardingHabitBuildRoute
+  AuthenticatedOnboardingHabitTypeRoute: typeof AuthenticatedOnboardingHabitTypeRoute
+  AuthenticatedOnboardingIdentityRoute: typeof AuthenticatedOnboardingIdentityRoute
+  AuthenticatedOnboardingReminderRoute: typeof AuthenticatedOnboardingReminderRoute
+  AuthenticatedOnboardingStrugglesRoute: typeof AuthenticatedOnboardingStrugglesRoute
+  AuthenticatedOnboardingTinyRoute: typeof AuthenticatedOnboardingTinyRoute
+  AuthenticatedOnboardingIndexRoute: typeof AuthenticatedOnboardingIndexRoute
 }
 
-const OnboardingRouteRouteChildren: OnboardingRouteRouteChildren = {
-  OnboardingDoneRoute: OnboardingDoneRoute,
-  OnboardingHabitBuildRoute: OnboardingHabitBuildRoute,
-  OnboardingHabitTypeRoute: OnboardingHabitTypeRoute,
-  OnboardingIdentityRoute: OnboardingIdentityRoute,
-  OnboardingReminderRoute: OnboardingReminderRoute,
-  OnboardingStrugglesRoute: OnboardingStrugglesRoute,
-  OnboardingTinyRoute: OnboardingTinyRoute,
-  OnboardingIndexRoute: OnboardingIndexRoute,
+const AuthenticatedOnboardingRouteRouteChildren: AuthenticatedOnboardingRouteRouteChildren =
+  {
+    AuthenticatedOnboardingDoneRoute: AuthenticatedOnboardingDoneRoute,
+    AuthenticatedOnboardingHabitBuildRoute:
+      AuthenticatedOnboardingHabitBuildRoute,
+    AuthenticatedOnboardingHabitTypeRoute:
+      AuthenticatedOnboardingHabitTypeRoute,
+    AuthenticatedOnboardingIdentityRoute: AuthenticatedOnboardingIdentityRoute,
+    AuthenticatedOnboardingReminderRoute: AuthenticatedOnboardingReminderRoute,
+    AuthenticatedOnboardingStrugglesRoute:
+      AuthenticatedOnboardingStrugglesRoute,
+    AuthenticatedOnboardingTinyRoute: AuthenticatedOnboardingTinyRoute,
+    AuthenticatedOnboardingIndexRoute: AuthenticatedOnboardingIndexRoute,
+  }
+
+const AuthenticatedOnboardingRouteRouteWithChildren =
+  AuthenticatedOnboardingRouteRoute._addFileChildren(
+    AuthenticatedOnboardingRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedOnboardingRouteRoute: typeof AuthenticatedOnboardingRouteRouteWithChildren
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
 }
 
-const OnboardingRouteRouteWithChildren = OnboardingRouteRoute._addFileChildren(
-  OnboardingRouteRouteChildren,
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedOnboardingRouteRoute:
+    AuthenticatedOnboardingRouteRouteWithChildren,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  OnboardingRouteRoute: OnboardingRouteRouteWithChildren,
-  DashboardRoute: DashboardRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   authSignInRoute: authSignInRoute,
   authSignUpRoute: authSignUpRoute,
 }
