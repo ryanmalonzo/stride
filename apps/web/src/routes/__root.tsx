@@ -1,6 +1,7 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { Toaster } from "sonner";
+import { ErrorFallback } from "../components/ErrorFallback";
 import { getSession } from "../lib/auth-client";
 import { queryClient } from "../lib/query";
 import { trpc, trpcClient } from "../lib/trpc";
@@ -17,6 +18,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 		return { session };
 	},
 	component: RootComponent,
+	errorComponent: ErrorFallback,
 });
 
 function RootComponent() {

@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { ErrorFallback } from "../../../components/ErrorFallback";
 import { Navbar } from "../../../components/Navbar";
 import {
 	getOnboardingStepIndex,
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/_authenticated/onboarding")({
 		}
 	},
 	component: OnboardingLayout,
+	errorComponent: ErrorFallback,
 });
 
 function OnboardingLayout() {

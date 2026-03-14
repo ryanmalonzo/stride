@@ -3,5 +3,7 @@
 	"other": "Other",
 	"continue": "Continue",
 	"back": "Back",
-	"genericError": "Something went wrong. Please try again."
+	"genericError": "Something went wrong. Please try again.",
+	"errorTitle": "Something went wrong",
+	"tryAgain": "Try again"
 }
