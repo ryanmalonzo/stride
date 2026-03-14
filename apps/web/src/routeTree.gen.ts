@@ -22,7 +22,6 @@ import { Route as AuthenticatedOnboardingReminderRouteImport } from './routes/_a
 import { Route as AuthenticatedOnboardingIdentityRouteImport } from './routes/_authenticated/onboarding/identity'
 import { Route as AuthenticatedOnboardingHabitTypeRouteImport } from './routes/_authenticated/onboarding/habit-type'
 import { Route as AuthenticatedOnboardingHabitBuildRouteImport } from './routes/_authenticated/onboarding/habit-build'
-import { Route as AuthenticatedOnboardingDoneRouteImport } from './routes/_authenticated/onboarding/done'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -96,12 +95,6 @@ const AuthenticatedOnboardingHabitBuildRoute =
     path: '/habit-build',
     getParentRoute: () => AuthenticatedOnboardingRouteRoute,
   } as any)
-const AuthenticatedOnboardingDoneRoute =
-  AuthenticatedOnboardingDoneRouteImport.update({
-    id: '/done',
-    path: '/done',
-    getParentRoute: () => AuthenticatedOnboardingRouteRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -109,7 +102,6 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/onboarding/done': typeof AuthenticatedOnboardingDoneRoute
   '/onboarding/habit-build': typeof AuthenticatedOnboardingHabitBuildRoute
   '/onboarding/habit-type': typeof AuthenticatedOnboardingHabitTypeRoute
   '/onboarding/identity': typeof AuthenticatedOnboardingIdentityRoute
@@ -123,7 +115,6 @@ export interface FileRoutesByTo {
   '/sign-in': typeof authSignInRoute
   '/sign-up': typeof authSignUpRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/onboarding/done': typeof AuthenticatedOnboardingDoneRoute
   '/onboarding/habit-build': typeof AuthenticatedOnboardingHabitBuildRoute
   '/onboarding/habit-type': typeof AuthenticatedOnboardingHabitTypeRoute
   '/onboarding/identity': typeof AuthenticatedOnboardingIdentityRoute
@@ -140,7 +131,6 @@ export interface FileRoutesById {
   '/(auth)/sign-in': typeof authSignInRoute
   '/(auth)/sign-up': typeof authSignUpRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/onboarding/done': typeof AuthenticatedOnboardingDoneRoute
   '/_authenticated/onboarding/habit-build': typeof AuthenticatedOnboardingHabitBuildRoute
   '/_authenticated/onboarding/habit-type': typeof AuthenticatedOnboardingHabitTypeRoute
   '/_authenticated/onboarding/identity': typeof AuthenticatedOnboardingIdentityRoute
@@ -157,7 +147,6 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/dashboard'
-    | '/onboarding/done'
     | '/onboarding/habit-build'
     | '/onboarding/habit-type'
     | '/onboarding/identity'
@@ -171,7 +160,6 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/dashboard'
-    | '/onboarding/done'
     | '/onboarding/habit-build'
     | '/onboarding/habit-type'
     | '/onboarding/identity'
@@ -187,7 +175,6 @@ export interface FileRouteTypes {
     | '/(auth)/sign-in'
     | '/(auth)/sign-up'
     | '/_authenticated/dashboard'
-    | '/_authenticated/onboarding/done'
     | '/_authenticated/onboarding/habit-build'
     | '/_authenticated/onboarding/habit-type'
     | '/_authenticated/onboarding/identity'
@@ -297,18 +284,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingHabitBuildRouteImport
       parentRoute: typeof AuthenticatedOnboardingRouteRoute
     }
-    '/_authenticated/onboarding/done': {
-      id: '/_authenticated/onboarding/done'
-      path: '/done'
-      fullPath: '/onboarding/done'
-      preLoaderRoute: typeof AuthenticatedOnboardingDoneRouteImport
-      parentRoute: typeof AuthenticatedOnboardingRouteRoute
-    }
   }
 }
 
 interface AuthenticatedOnboardingRouteRouteChildren {
-  AuthenticatedOnboardingDoneRoute: typeof AuthenticatedOnboardingDoneRoute
   AuthenticatedOnboardingHabitBuildRoute: typeof AuthenticatedOnboardingHabitBuildRoute
   AuthenticatedOnboardingHabitTypeRoute: typeof AuthenticatedOnboardingHabitTypeRoute
   AuthenticatedOnboardingIdentityRoute: typeof AuthenticatedOnboardingIdentityRoute
@@ -320,7 +299,6 @@ interface AuthenticatedOnboardingRouteRouteChildren {
 
 const AuthenticatedOnboardingRouteRouteChildren: AuthenticatedOnboardingRouteRouteChildren =
   {
-    AuthenticatedOnboardingDoneRoute: AuthenticatedOnboardingDoneRoute,
     AuthenticatedOnboardingHabitBuildRoute:
       AuthenticatedOnboardingHabitBuildRoute,
     AuthenticatedOnboardingHabitTypeRoute:

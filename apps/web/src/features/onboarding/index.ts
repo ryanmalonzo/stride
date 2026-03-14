@@ -15,7 +15,6 @@ export {
 } from "./constants";
 export { useOnboardingNavigation } from "./hooks/useOnboardingNavigation";
 export {
-	OnboardingDonePage,
 	OnboardingHabitBuildPage,
 	OnboardingHabitTypePage,
 	OnboardingIdentityPage,

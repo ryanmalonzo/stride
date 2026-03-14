@@ -18,8 +18,12 @@ export function OnboardingHabitBuildPage() {
 	const isContinueEnabled =
 		habitType === "intention"
 			? intention.action.trim().length > 0 &&
+				intention.time.length > 0 &&
 				(intention.time !== "specificTime" ||
-					intention.specificTime.trim().length > 0)
+					intention.specificTime.trim().length > 0) &&
+				intention.location.length > 0 &&
+				(intention.location !== "other" ||
+					intention.otherLocation.trim().length > 0)
 			: stack.anchor.trim().length > 0 && stack.newHabit.trim().length > 0;
 
 	return (

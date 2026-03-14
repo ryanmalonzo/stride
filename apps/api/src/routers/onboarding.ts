@@ -21,6 +21,25 @@ export const onboardingRouter = router({
 					})),
 				});
 
+				await tx.habit.create({
+					data: {
+						userId: ctx.user.id,
+						type: input.habit.type,
+						name: input.habit.name,
+						tinyVersion: input.habit.tinyVersion,
+						time:
+							input.habit.type === "IMPLEMENTATION_INTENTION"
+								? input.habit.time
+								: null,
+						location:
+							input.habit.type === "IMPLEMENTATION_INTENTION"
+								? input.habit.location
+								: null,
+						anchor:
+							input.habit.type === "HABIT_STACK" ? input.habit.anchor : null,
+					},
+				});
+
 				await tx.user.update({
 					where: { id: ctx.user.id },
 					data: { onboardingCompletedAt: new Date() },

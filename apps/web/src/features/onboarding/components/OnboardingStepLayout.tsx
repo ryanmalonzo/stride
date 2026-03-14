@@ -8,6 +8,7 @@ interface OnboardingStepLayoutProps {
 	children: React.ReactNode;
 	onContinue?: () => void;
 	isContinueEnabled?: boolean;
+	isContinueLoading?: boolean;
 	onBack?: () => void;
 	footer?: React.ReactNode;
 }
@@ -18,6 +19,7 @@ export function OnboardingStepLayout({
 	children,
 	onContinue,
 	isContinueEnabled = true,
+	isContinueLoading = false,
 	onBack,
 	footer,
 }: OnboardingStepLayoutProps) {
@@ -51,6 +53,7 @@ export function OnboardingStepLayout({
 						<Button
 							fullWidth={false}
 							disabled={!isContinueEnabled || !onContinue}
+							loading={isContinueLoading}
 							onClick={onContinue}
 							icon={<ArrowRight size={16} />}
 						>
