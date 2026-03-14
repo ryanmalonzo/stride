@@ -40,11 +40,28 @@
 	--radius-chip: 20px;
 	--radius-modal: 20px;
 
+	/* ── Border radius (supplements existing) ── */
+	--radius-input: 10px; /* Input, Button */
+	--radius-cue: 14px; /* CueCard */
+
+	/* ── Typography scale ── */
+	--text-2xs: 10px; /* uppercase badge labels */
+	--text-label: 11px; /* footer, step counters */
+	--text-footnote: 12px; /* example text, selected labels */
+	--text-callout: 13px; /* descriptions, callouts */
+	--text-body: 14px; /* primary body text */
+	--text-body-lg: 15px; /* slightly larger body, sentence fields */
+	--text-icon-lg: 22px; /* large emoji icons */
+	--text-title: 28px; /* auth page h1 */
+	--text-display: 30px; /* onboarding step h1 */
+
 	/* ── Shadows ── */
 	--shadow-card:
 		0 1px 3px rgba(62, 39, 35, 0.06), 0 1px 2px rgba(62, 39, 35, 0.04);
 	--shadow-card-hover: 0 4px 12px rgba(62, 39, 35, 0.1);
 	--shadow-modal: 0 -8px 32px rgba(62, 39, 35, 0.15);
+	--shadow-focus: 0 0 0 3px rgba(62, 39, 35, 0.08);
+	--shadow-focus-error: 0 0 0 3px rgba(239, 68, 68, 0.12);
 }
 
 body {

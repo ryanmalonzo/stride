@@ -34,11 +34,11 @@ export function HabitBuildStackForm({
 			/>
 
 			{showPreview && (
-				<div className="mt-1 rounded-[12px] border border-stone-border bg-surface px-4 py-3.5">
-					<span className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.08em] text-stone-soft">
+				<div className="mt-1 rounded-card border border-stone-border bg-surface px-4 py-3.5">
+					<span className="mb-1.5 block text-2xs font-bold uppercase tracking-[0.08em] text-stone-soft">
 						{t("habitBuild.stack.previewLabel")}
 					</span>
-					<p className="font-serif text-[14px] leading-[1.6] text-bark/80 italic">
+					<p className="font-serif text-body leading-[1.6] text-bark/80 italic">
 						"After I <strong>{value.anchor}</strong>, I will{" "}
 						<strong>{value.newHabit}</strong>."
 					</p>

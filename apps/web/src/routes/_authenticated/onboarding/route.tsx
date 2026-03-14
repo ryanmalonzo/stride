@@ -63,7 +63,7 @@ function OnboardingLayout() {
 				}
 			/>
 			<div className="flex justify-center px-6 pt-10 lg:hidden">
-				<p className="w-full max-w-140 text-[11px] font-bold uppercase tracking-widest text-success">
+				<p className="w-full max-w-140 text-label font-bold uppercase tracking-widest text-success">
 					{t("progress.stepLabel", { current: currentStep, total: totalSteps })}
 				</p>
 			</div>

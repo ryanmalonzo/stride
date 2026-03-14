@@ -82,7 +82,7 @@ export function SignInForm() {
 				<div className="flex justify-end -mt-2">
 					<a
 						href="#!"
-						className="border-b border-stone-hover text-[13px] text-stone-muted no-underline"
+						className="border-b border-stone-hover text-callout text-stone-muted no-underline"
 					>
 						{t("signIn.forgotPassword")}
 					</a>

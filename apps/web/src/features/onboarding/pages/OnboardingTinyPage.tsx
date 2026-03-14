@@ -29,11 +29,11 @@ export function OnboardingTinyPage() {
 			isContinueEnabled={tinyVersion.trim().length > 0}
 		>
 			<div className="flex flex-col gap-2.5">
-				<div className="rounded-[12px] border border-stone-border bg-surface px-4 py-3.5">
-					<span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.08em] text-stone-soft">
+				<div className="rounded-card border border-stone-border bg-surface px-4 py-3.5">
+					<span className="mb-1 block text-2xs font-bold uppercase tracking-[0.08em] text-stone-soft">
 						{t("tiny.habitLabel")}
 					</span>
-					<p className="text-[15px] font-medium text-bark">{habitName}</p>
+					<p className="text-body-lg font-medium text-bark">{habitName}</p>
 				</div>
 
 				<p className="text-center text-[18px] leading-none text-stone-hover">
@@ -45,7 +45,7 @@ export function OnboardingTinyPage() {
 					placeholder={t("tiny.placeholder")}
 					value={tinyVersion}
 					onChange={(e) => setData({ tinyVersion: e.target.value })}
-					className="py-2.75 text-[14px]"
+					className="py-3 text-body"
 				/>
 
 				<Callout variant="info">

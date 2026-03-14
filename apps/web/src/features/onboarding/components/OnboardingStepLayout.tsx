@@ -29,10 +29,10 @@ export function OnboardingStepLayout({
 		<main className="flex flex-1 items-start justify-center px-6 pt-4 pb-20 lg:pt-12">
 			<div className="flex w-full max-w-140 flex-col gap-8">
 				<div className="flex flex-col">
-					<h1 className="mb-2.5 font-serif text-[30px] font-semibold leading-[1.2] tracking-[-0.5px]">
+					<h1 className="mb-2.5 font-serif text-display font-semibold leading-[1.2] tracking-[-0.5px]">
 						{title}
 					</h1>
-					<p className="mb-8 text-[15px] leading-[1.6] text-stone-muted">
+					<p className="mb-8 text-body-lg leading-[1.6] text-stone-muted">
 						{subtitle}
 					</p>
 

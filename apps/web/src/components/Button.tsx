@@ -33,14 +33,14 @@ export function Button({
 	fullWidth = true,
 }: ButtonProps) {
 	const isDisabled = disabled || loading;
-	const sizeClasses = fullWidth ? "w-full py-3 mb-5" : "px-7 py-3.25";
+	const sizeClasses = fullWidth ? "w-full py-3 mb-5" : "px-7 py-3";
 
 	return (
 		<button
 			type={type}
 			onClick={onClick}
 			disabled={isDisabled}
-			className={`inline-flex items-center justify-center gap-2 rounded-[10px] text-[15px] font-semibold font-sans transition-[opacity,transform] duration-150 ${sizeClasses} ${getVariantClasses(variant)} ${isDisabled ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:opacity-88"}`}
+			className={`inline-flex items-center justify-center gap-2 rounded-input text-[15px] font-semibold font-sans transition-[opacity,transform] duration-150 ${sizeClasses} ${getVariantClasses(variant)} ${isDisabled ? "opacity-35 cursor-not-allowed" : "cursor-pointer hover:opacity-88"}`}
 		>
 			{loading ? (
 				<span className="block w-4 h-4 rounded-full border-2 border-current border-t-transparent animate-spin" />

@@ -13,16 +13,18 @@ export function SignInPage() {
 
 			<div className="flex w-full max-w-95 flex-col">
 				<div className="mb-8">
-					<h1 className="mb-1.5 font-serif text-[28px] font-semibold tracking-tight text-bark">
+					<h1 className="mb-1.5 font-serif text-title font-semibold tracking-tight text-bark">
 						{t("signIn.title")}
 					</h1>
-					<p className="text-[15px] text-stone-muted">{t("signIn.subtitle")}</p>
+					<p className="text-body-lg text-stone-muted">
+						{t("signIn.subtitle")}
+					</p>
 				</div>
 
 				<SignInForm />
 			</div>
 
-			<p className="absolute bottom-6 text-[11px] tracking-widest text-stone-soft">
+			<p className="absolute bottom-6 text-label tracking-widest text-stone-soft">
 				{t("footer")}
 			</p>
 		</div>

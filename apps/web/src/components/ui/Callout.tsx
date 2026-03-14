@@ -30,7 +30,7 @@ export function Callout({
 	return (
 		<div
 			className={twMerge(
-				"flex items-start gap-2.5 rounded-[10px] px-3.5 py-3",
+				"flex items-start gap-2.5 rounded-input px-3.5 py-3",
 				containerClassName,
 				className,
 			)}
@@ -44,7 +44,7 @@ export function Callout({
 			</span>
 			<div
 				className={twMerge(
-					"text-[13px] leading-[1.6] text-stone-muted",
+					"text-callout leading-[1.6] text-stone-muted",
 					contentClassName,
 				)}
 			>

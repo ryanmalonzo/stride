@@ -67,7 +67,7 @@ export function HabitBuildIntentionForm({
 			/>
 
 			<div className="flex items-start gap-3">
-				<span className="min-w-15 pt-1.5 text-[15px] font-semibold text-bark">
+				<span className="min-w-15 pt-1.5 text-body-lg font-semibold text-bark">
 					{t("habitBuild.intention.timeLabel")}
 				</span>
 				<div className="flex-1">
@@ -93,7 +93,7 @@ export function HabitBuildIntentionForm({
 
 					{value.time === "other" && (
 						<Input
-							className="mt-2.5 w-auto py-2.75 text-[14px]"
+							className="mt-2.5 w-auto py-3 text-body"
 							type="time"
 							value={value.otherTime}
 							onChange={(e) => onOtherTimeChange(e.target.value)}
@@ -103,7 +103,7 @@ export function HabitBuildIntentionForm({
 			</div>
 
 			<div className="flex items-start gap-3">
-				<span className="min-w-15 pt-1.5 text-[15px] font-semibold text-bark">
+				<span className="min-w-15 pt-1.5 text-body-lg font-semibold text-bark">
 					{t("habitBuild.intention.locationLabel")}
 				</span>
 				<div className="flex-1">
@@ -126,7 +126,7 @@ export function HabitBuildIntentionForm({
 
 					{value.location === "other" && (
 						<Input
-							className="mt-2.5 py-2.75 text-[14px]"
+							className="mt-2.5 py-3 text-body"
 							placeholder={t("habitBuild.intention.otherLocationPlaceholder")}
 							value={value.otherLocation}
 							onChange={(e) => onOtherLocationChange(e.target.value)}
@@ -136,11 +136,11 @@ export function HabitBuildIntentionForm({
 			</div>
 
 			{value.action.trim().length > 0 && (
-				<div className="mt-1 rounded-[12px] border border-stone-border bg-surface px-4 py-3.5">
-					<span className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.08em] text-stone-soft">
+				<div className="mt-1 rounded-card border border-stone-border bg-surface px-4 py-3.5">
+					<span className="mb-1.5 block text-2xs font-bold uppercase tracking-[0.08em] text-stone-soft">
 						{t("habitBuild.intention.previewLabel")}
 					</span>
-					<p className="font-serif text-[14px] leading-[1.6] text-bark/80 italic">
+					<p className="font-serif text-body leading-[1.6] text-bark/80 italic">
 						"I will <strong>{value.action}</strong>
 						{timePreviewText ? ` at ${timePreviewText}` : ""}
 						{locationPreviewText ? ` in ${locationPreviewText}` : ""}
