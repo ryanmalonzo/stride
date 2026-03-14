@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { Input } from "../../../components/Input";
 import { ToggleCard } from "../../../components/ui/ToggleCard";
 import { OnboardingStepLayout } from "../components/OnboardingStepLayout";
 import { useOnboardingNavigation } from "../hooks/useOnboardingNavigation";
@@ -68,8 +69,8 @@ export function OnboardingIdentityPage() {
 			</div>
 
 			{selectedIdentityKeys.includes("other") && (
-				<input
-					className="mt-2.5 w-full rounded-[10px] border-[1.5px] border-stone-border bg-surface px-3.5 py-2.75 font-sans text-[14px] text-bark placeholder:text-stone-soft transition-[border-color] duration-150 focus:border-bark focus:outline-none"
+				<Input
+					className="mt-2.5"
 					placeholder={t("identity.otherPlaceholder")}
 					value={otherIdentity}
 					onChange={(e) => setData({ otherIdentity: e.target.value })}

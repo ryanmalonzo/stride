@@ -1,3 +1,5 @@
+import { Input } from "../Input";
+
 interface SentenceFieldProps {
 	label: string;
 	placeholder: string;
@@ -16,8 +18,9 @@ export function SentenceField({
 			<span className="min-w-15 whitespace-nowrap text-[15px] font-semibold text-bark">
 				{label}
 			</span>
-			<input
-				className="flex-1 border-0 border-b-2 border-stone-hover bg-transparent py-1.5 font-sans text-[15px] text-bark placeholder:text-stone-soft focus:border-bark focus:outline-none"
+			<Input
+				variant="underline"
+				className="flex-1"
 				placeholder={placeholder}
 				value={value}
 				onChange={(e) => onChange(e.target.value)}
