@@ -37,7 +37,7 @@ export function OnboardingTinyPage() {
 			onContinue={goContinue}
 			isContinueEnabled={tinyVersion.trim().length > 0}
 		>
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-2.5">
 				<div className="rounded-[12px] border border-stone-border bg-surface px-4 py-3.5">
 					<span className="mb-1 block text-[10px] font-bold uppercase tracking-[0.08em] text-stone-soft">
 						{t("tiny.habitLabel")}
@@ -45,21 +45,19 @@ export function OnboardingTinyPage() {
 					<p className="text-[15px] font-medium text-bark">{habitName}</p>
 				</div>
 
-				<p className="mt-1 text-center text-[18px] leading-none text-stone-hover">
+				<p className="text-center text-[18px] leading-none text-stone-hover">
 					↓
 				</p>
 
-				<div className="mt-1.5">
-					<InputWithLabel
-						label={t("tiny.inputLabel")}
-						placeholder={t("tiny.placeholder")}
-						value={tinyVersion}
-						onChange={(e) => setData({ tinyVersion: e.target.value })}
-						className="py-2.75 text-[14px]"
-					/>
-				</div>
+				<InputWithLabel
+					label={t("tiny.inputLabel")}
+					placeholder={t("tiny.placeholder")}
+					value={tinyVersion}
+					onChange={(e) => setData({ tinyVersion: e.target.value })}
+					className="py-2.75 text-[14px]"
+				/>
 
-				<Callout variant="info" className="mt-2">
+				<Callout variant="info">
 					<p>{t("tiny.hint")}</p>
 				</Callout>
 			</div>

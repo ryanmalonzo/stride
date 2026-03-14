@@ -57,7 +57,11 @@ export function SignInForm() {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} noValidate>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				noValidate
+				className="flex flex-col gap-4"
+			>
 				<InputWithLabel
 					label={tForm("email.label")}
 					type="email"
@@ -75,7 +79,7 @@ export function SignInForm() {
 					{...register("password")}
 				/>
 
-				<div className="-mt-2 mb-6 flex justify-end">
+				<div className="flex justify-end -mt-2">
 					<a
 						href="#!"
 						className="border-b border-stone-hover text-[13px] text-stone-muted no-underline"

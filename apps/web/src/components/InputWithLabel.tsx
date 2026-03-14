@@ -10,7 +10,7 @@ export const InputWithLabel = forwardRef<HTMLInputElement, InputWithLabelProps>(
 		const inputId = useId();
 
 		return (
-			<div className="mb-4">
+			<div>
 				<label
 					htmlFor={inputId}
 					className="block text-xs font-semibold text-bark mb-1.5 tracking-wide"

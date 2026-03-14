@@ -73,7 +73,11 @@ export function SignUpForm() {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} noValidate>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				noValidate
+				className="flex flex-col gap-4"
+			>
 				<InputWithLabel
 					label={tForm("email.label")}
 					type="email"
