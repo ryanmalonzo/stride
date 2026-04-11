@@ -5,7 +5,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "bun run --hot src/index.ts",
-		"prisma": "bunx --bun prisma"
+		"db:migrate": "bunx --bun prisma migrate dev",
+		"db:generate": "bunx --bun prisma generate"
 	},
 	"dependencies": {
 		"@prisma/adapter-pg": "^7.7.0",
