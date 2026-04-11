@@ -1,8 +1,16 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { Scalar } from "@scalar/hono-api-reference";
+import { AppError } from "./lib/errors";
 import authenticationRouter from "./presentation/authentication";
 
 const app = new OpenAPIHono();
+
+app.onError((err, c) => {
+	if (err instanceof AppError) {
+		return c.json({ error: err.message }, err.statusCode);
+	}
+	return c.json({ error: "Internal Server Error" }, 500);
+});
 
 app.route("/", authenticationRouter);
 

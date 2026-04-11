@@ -1,4 +1,5 @@
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
+import * as authenticationService from "../services/authentication";
 
 const SignUpInputSchema = z.object({
 	email: z.email().openapi({ example: "john.doe@gmail.com" }),
@@ -36,7 +37,7 @@ const app = new OpenAPIHono();
 
 app.openapi(route, async (c) => {
 	const { email, password } = c.req.valid("json");
-	// TODO: call service
+	await authenticationService.signUp(email, password);
 	return c.json(undefined);
 });
 
