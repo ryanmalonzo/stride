@@ -1,4 +1,4 @@
-import { ConflictError } from "../lib/errors";
+import { ConflictError, UnauthorizedError } from "../lib/errors";
 import { prisma } from "../lib/prisma";
 
 export async function signUp(email: string, password: string): Promise<void> {
@@ -20,4 +20,23 @@ export async function signUp(email: string, password: string): Promise<void> {
 			}),
 		},
 	});
+}
+
+export async function signIn(
+	email: string,
+	password: string,
+): Promise<{ userId: string }> {
+	const user = await prisma.user.findUnique({
+		where: {
+			email,
+		},
+	});
+
+	if (!user || !(await Bun.password.verify(password, user.password))) {
+		throw new UnauthorizedError("Invalid credentials");
+	}
+
+	return {
+		userId: user.id,
+	};
 }

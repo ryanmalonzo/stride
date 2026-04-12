@@ -6,8 +6,6 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"target": "ES2023",
-		"esModuleInterop": true,
-		"ignoreDeprecations": "6.0"
+		"esModuleInterop": true
 	}
 }
-
