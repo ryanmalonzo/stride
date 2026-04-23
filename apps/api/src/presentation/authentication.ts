@@ -1,7 +1,18 @@
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
+import type { Context } from "hono";
 import { setSignedCookie } from "hono/cookie";
 import { env } from "../lib/env";
 import * as authenticationService from "../services/authentication";
+
+async function setSessionCookie(c: Context, sessionId: string) {
+	await setSignedCookie(c, "session", sessionId, env.COOKIE_SECRET, {
+		httpOnly: true,
+		secure: env.NODE_ENV === "production",
+		sameSite: "Strict",
+		maxAge: authenticationService.SESSION_DURATION_MS / 1000,
+		path: "/",
+	});
+}
 
 const app = new OpenAPIHono();
 
@@ -38,7 +49,10 @@ const signUpRoute = createRoute({
 
 app.openapi(signUpRoute, async (c) => {
 	const { email, password } = c.req.valid("json");
-	await authenticationService.signUp(email, password);
+
+	const { sessionId } = await authenticationService.signUp(email, password);
+	await setSessionCookie(c, sessionId);
+
 	return c.body(null, 201);
 });
 
@@ -71,15 +85,9 @@ const signInRoute = createRoute({
 
 app.openapi(signInRoute, async (c) => {
 	const { email, password } = c.req.valid("json");
-	const { userId } = await authenticationService.signIn(email, password);
 
-	await setSignedCookie(c, "session", userId, env.COOKIE_SECRET, {
-		httpOnly: true,
-		secure: env.NODE_ENV === "production",
-		sameSite: "Strict",
-		maxAge: 60 * 60 * 24 * 30, // 30 days
-		path: "/",
-	});
+	const { sessionId } = await authenticationService.signIn(email, password);
+	await setSessionCookie(c, sessionId);
 
 	return c.body(null, 200);
 });
