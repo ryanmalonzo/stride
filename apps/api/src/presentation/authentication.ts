@@ -39,7 +39,7 @@ const signUpRoute = createRoute({
 app.openapi(signUpRoute, async (c) => {
 	const { email, password } = c.req.valid("json");
 	await authenticationService.signUp(email, password);
-	return c.json(undefined);
+	return c.body(null, 201);
 });
 
 const SignInInputSchema = z.object({
@@ -81,7 +81,7 @@ app.openapi(signInRoute, async (c) => {
 		path: "/",
 	});
 
-	return c.json(undefined);
+	return c.body(null, 200);
 });
 
 export default app;
