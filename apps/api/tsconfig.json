@@ -6,6 +6,7 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"target": "ES2023",
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"types": ["bun", "pg"]
 	}
 }
