@@ -1,9 +1,9 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
-import { Scalar } from "@scalar/hono-api-reference";
+import { trpcServer } from "@hono/trpc-server";
+import { Hono } from "hono";
 import { AppError } from "./lib/errors";
-import authenticationRouter from "./presentation/authentication";
+import { appRouter } from "./presentation";
 
-const app = new OpenAPIHono();
+const app = new Hono();
 
 app.onError((err, c) => {
 	if (err instanceof AppError) {
@@ -12,16 +12,12 @@ app.onError((err, c) => {
 	return c.json({ error: "Internal Server Error" }, 500);
 });
 
-app.route("/", authenticationRouter);
-
-app.doc("/openapi", {
-	openapi: "3.0.0",
-	info: {
-		version: "1.0.0",
-		title: "Stride API",
-	},
-});
-
-app.get("/docs", Scalar({ url: "/openapi" }));
+app.use(
+	"/trpc/*",
+	trpcServer({
+		router: appRouter,
+		createContext: (_opts, c) => ({ honoCtx: c }),
+	}),
+);
 
 export default app;

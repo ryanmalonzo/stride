@@ -1,8 +1,9 @@
-import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import type { Context } from "hono";
 import { setSignedCookie } from "hono/cookie";
+import { z } from "zod";
 import { env } from "../lib/env";
 import * as authenticationService from "../services/authentication";
+import { publicProcedure, router } from ".";
 
 async function setSessionCookie(c: Context, sessionId: string) {
 	await setSignedCookie(c, "session", sessionId, env.COOKIE_SECRET, {
@@ -14,82 +15,31 @@ async function setSessionCookie(c: Context, sessionId: string) {
 	});
 }
 
-const app = new OpenAPIHono();
-
 const SignUpInputSchema = z.object({
-	email: z.email().openapi({ example: "john.doe@gmail.com" }),
-	password: z
-		.string()
-		.min(8)
-		.max(256)
-		.openapi({ example: "stride-habit-tracker" }),
+	email: z.email(),
+	password: z.string().min(8).max(256),
 });
-const signUpRoute = createRoute({
-	method: "post",
-	path: "/sign-up",
-	request: {
-		body: {
-			content: {
-				"application/json": {
-					schema: SignUpInputSchema,
-				},
-			},
-			required: true,
-		},
-	},
-	responses: {
-		201: {
-			content: {
-				"application/json": undefined,
-			},
-			description: "User created",
-		},
-	},
-});
-
-app.openapi(signUpRoute, async (c) => {
-	const { email, password } = c.req.valid("json");
-
-	const { sessionId } = await authenticationService.signUp(email, password);
-	await setSessionCookie(c, sessionId);
-
-	return c.body(null, 201);
-});
+export const signUp = publicProcedure
+	.input(SignUpInputSchema)
+	.mutation(async ({ input, ctx }) => {
+		const { email, password } = input;
+		const { sessionId } = await authenticationService.signUp(email, password);
+		await setSessionCookie(ctx.honoCtx, sessionId);
+	});
 
 const SignInInputSchema = z.object({
-	email: z.email().openapi({ example: "john.doe@gmail.com" }),
-	password: z.string().min(1).openapi({ example: "stride-habit-tracker" }),
+	email: z.email(),
+	password: z.string().min(1),
 });
-const signInRoute = createRoute({
-	method: "post",
-	path: "/sign-in",
-	request: {
-		body: {
-			content: {
-				"application/json": {
-					schema: SignInInputSchema,
-				},
-			},
-			required: true,
-		},
-	},
-	responses: {
-		200: {
-			content: {
-				"application/json": undefined,
-			},
-			description: "User signed in",
-		},
-	},
+export const signIn = publicProcedure
+	.input(SignInInputSchema)
+	.mutation(async ({ input, ctx }) => {
+		const { email, password } = input;
+		const { sessionId } = await authenticationService.signIn(email, password);
+		await setSessionCookie(ctx.honoCtx, sessionId);
+	});
+
+export const authenticationRouter = router({
+	signUp,
+	signIn,
 });
-
-app.openapi(signInRoute, async (c) => {
-	const { email, password } = c.req.valid("json");
-
-	const { sessionId } = await authenticationService.signIn(email, password);
-	await setSessionCookie(c, sessionId);
-
-	return c.body(null, 200);
-});
-
-export default app;
